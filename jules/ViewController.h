@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JulesView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    JulesView *jules;
+    NSTimer *julesTimer;
+    CADisplayLink *displayLink;
+}
 
+-(void) initTimer;
+-(void) julesTimerCallBack;
 
 @end
 
