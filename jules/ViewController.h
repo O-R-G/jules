@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "JulesView.h"
+#import "DotView.h"
 
 @interface ViewController : UIViewController {
-    JulesView *jules;
+    JulesView *julesView;
+    DotView *dotView;
     NSTimer *julesTimer;
     CADisplayLink *displayLink;
 }

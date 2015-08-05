@@ -15,6 +15,7 @@
 		2A7464BE1B70F8920093B3EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7464BC1B70F8920093B3EA /* LaunchScreen.xib */; };
 		2A7464CA1B70F8920093B3EA /* julesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464C91B70F8920093B3EA /* julesTests.m */; };
 		2A7464DC1B7132A40093B3EA /* JulesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464DB1B7132A40093B3EA /* JulesView.m */; };
+		2A86782B1B72599200733B0A /* DotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A86782A1B72599200733B0A /* DotView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		2A7464C91B70F8920093B3EA /* julesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = julesTests.m; sourceTree = "<group>"; };
 		2A7464D31B710D9E0093B3EA /* JulesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JulesView.h; sourceTree = "<group>"; };
 		2A7464DB1B7132A40093B3EA /* JulesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JulesView.m; path = ../jules.xcodeproj/JulesView.m; sourceTree = "<group>"; };
+		2A86782A1B72599200733B0A /* DotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotView.m; sourceTree = "<group>"; };
+		2A86782C1B7259AD00733B0A /* DotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 		2A7464AC1B70F8920093B3EA /* jules */ = {
 			isa = PBXGroup;
 			children = (
+				2A86782C1B7259AD00733B0A /* DotView.h */,
+				2A86782A1B72599200733B0A /* DotView.m */,
 				2A7464D31B710D9E0093B3EA /* JulesView.h */,
 				2A7464DB1B7132A40093B3EA /* JulesView.m */,
 				2A7464B11B70F8920093B3EA /* AppDelegate.h */,
@@ -226,6 +231,7 @@
 			files = (
 				2A7464DC1B7132A40093B3EA /* JulesView.m in Sources */,
 				2A7464B61B70F8920093B3EA /* ViewController.m in Sources */,
+				2A86782B1B72599200733B0A /* DotView.m in Sources */,
 				2A7464B31B70F8920093B3EA /* AppDelegate.m in Sources */,
 				2A7464B01B70F8920093B3EA /* main.m in Sources */,
 			);
@@ -424,6 +430,7 @@
 				2A7464CF1B70F8920093B3EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2A7464D01B70F8920093B3EA /* Build configuration list for PBXNativeTarget "julesTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +439,7 @@
 				2A7464D21B70F8920093B3EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

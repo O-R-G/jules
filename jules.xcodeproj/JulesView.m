@@ -15,6 +15,7 @@
 - (void)drawRect:(CGRect)rect
 {
     [self drawFrame];
+    // [self drawDot:rect];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -22,6 +23,18 @@
     if(self)
         [self initValues];
     return self;
+}
+
+//+ (Class) layerClass {
+//    return [CAShapeLayer class];
+//}
+
+- (void) drawDot:(CGRect)rect
+{
+    UIBezierPath *path;
+    path = [UIBezierPath bezierPathWithOvalInRect:rect];
+    [[UIColor redColor] setFill];
+    [path fill];
 }
 
 - (void) drawFrame
@@ -62,12 +75,12 @@
     
     
     // Check number of loops and redraw shape periodically
-    if(counter > 3600)
+    if(counter > 360)
     {
         [self initShape];
         // clear screen
         [self setBackgroundColor:[UIColor blackColor]];
-        NSLog(@"reset!");
+        NSLog(@"%@", counter);
     }
     else
         counter++;
@@ -97,8 +110,38 @@
     srand48(time(0));
     xFactor = (float)drand48() * 2.f;
     yFactor = (float)drand48() * 2.f;
+//    xFactor = 1;
+//    yFactor = xFactor/3.0;
     counter = 0;
     return;
+}
+
+- (CGMutablePathRef) makePath
+{
+    CGMutablePathRef path = CGPathCreateMutable();
+    int cycles = 3600;
+    int x = 0.0;
+    int y = 0.0;
+    float delta = .035;
+
+    for(int i = 0; i < cycles; i++)
+    {
+        CGPathMoveToPoint(path, NULL, x, y);
+        theta += delta;
+        x = scalar * (sin(xFactor*theta)) + size.width / 2;
+        y = scalar * (sin(yFactor*theta)) + size.height / 2;
+        
+    }
+    return path;
+}
+
+- (void) animate
+{
+    CGMutablePathRef myPath = [self makePath];
+    CAKeyframeAnimation *animation;
+    animation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    animation.path = myPath;
+    animation.duration = 120.0;
 }
 
 @end

@@ -19,6 +19,7 @@
 }
 
 - (void)drawRect:(CGRect)rect;
+- (void) drawDot:(CGRect)rect;
 - (id)initWithFrame:(CGRect)frame;
 - (void)initValues;
 - (void)initShape;
