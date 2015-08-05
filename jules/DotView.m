@@ -12,6 +12,11 @@
 
 @implementation DotView
 
++ (Class)layerClass {
+    return [CAShapeLayer class];
+}
+
+
 - (void)drawRect:(CGRect)rect
 {
     [self drawDot];
@@ -30,8 +35,13 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
     
     // Set the render colors.
-    [[UIColor redColor] setFill];
+    [[UIColor blackColor] setFill];
     [path fill];
+}
+
+- (void) animate
+{
+    
 }
 
 @end

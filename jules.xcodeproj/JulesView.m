@@ -75,12 +75,12 @@
     
     
     // Check number of loops and redraw shape periodically
-    if(counter > 360)
+    if(counter > 3600)
     {
         [self initShape];
         // clear screen
         [self setBackgroundColor:[UIColor blackColor]];
-        NSLog(@"%@", counter);
+        NSLog(@"%d", counter);
     }
     else
         counter++;
@@ -110,8 +110,6 @@
     srand48(time(0));
     xFactor = (float)drand48() * 2.f;
     yFactor = (float)drand48() * 2.f;
-//    xFactor = 1;
-//    yFactor = xFactor/3.0;
     counter = 0;
     return;
 }

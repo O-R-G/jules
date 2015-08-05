@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 o-r-g. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -14,50 +15,40 @@
 
 @implementation ViewController
 
+// ------------------------------------------------------
+// INIT FUNCTION
+// ------------------------------------------------------
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view, typically from a nib.
     
     [self.view setBackgroundColor:[UIColor blackColor]];
     
+    // old way + new way
     float w = self.view.frame.size.width;
     float h = self.view.frame.size.height;
     
-    //CGRect displayArea = CGRectMake(0,0, w, h);
-    CGRect displayArea = CGRectMake(w/2,h/2, w/100, w/100);
-    dotView = [[DotView alloc] initWithFrame:displayArea];
+    // new way only
+    CGRect dotArea = CGRectMake(w/2,h/2, w/100, w/100);
+    dotView = [[DotView alloc] initWithFrame:dotArea];
     [self.view addSubview: dotView];
+    cycles = 3600;
+    fps = 30.0;
     [self animateDot];
     
-    // julesView = [[JulesView alloc] initWithFrame:displayArea];
-    // [self.view addSubview: julesView];
-    
-    // [self initTimer];
-    
-    CGPoint myNewPosition;
-    myNewPosition.x = 0.0;
-    myNewPosition.y = 0.0;
-    [UIView animateWithDuration:1.0 animations:^{
-        // Change the opacity implicitly.
-        // julesView.layer.opacity = 0.0;
-        
-        // Change the position explicitly.
-        CABasicAnimation* theAnim = [CABasicAnimation animationWithKeyPath:@"position"];
-        theAnim.fromValue = [NSValue valueWithCGPoint:dotView.layer.position];
-        theAnim.toValue = [NSValue valueWithCGPoint:myNewPosition];
-        theAnim.duration = 3.0;
-        [dotView.layer addAnimation:theAnim forKey:@"AnimateFrame"];
-    }];
+    // old way only
+//    CGRect julesArea = CGRectMake(0,0, w, h);
+//    julesView = [[JulesView alloc] initWithFrame:julesArea];
+//    [self.view addSubview: julesView];
+//    [self initTimer];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
--(BOOL)prefersStatusBarHidden{
-    return YES;
-}
+// ------------------------------------------------------
+// OLD WAY FUNCTIONS
+// ------------------------------------------------------
 
 -(void) initTimer
 {
@@ -76,37 +67,121 @@
     [julesView setNeedsDisplay];
 }
 
+// ------------------------------------------------------
+// NEW WAY FUNCTIONS
+// ------------------------------------------------------
+
+// so this works, but it is SO HORRIBLY HACKY
 - (void) animateDot
 {
-//    CGMutablePathRef
-//    CGPoint pos;
-//    int cycles = 3600;
-//    float delta = 0.035;
-//    float theta = 0.0;
-//    float scalar = self.view.frame.size.width / 2.2;
-//    srand48(time(0));
-//    float xFactor = (float)drand48() * 2.f;
-//    float yFactor = (float)drand48() * 2.f;
-//    CGSize size = self.view.frame.size;
-//    
-//    pos.x = 0.0;
-//    pos.y = 0.0;
+    // remove old path from layer
+    [pathLayer removeFromSuperlayer];
+    // make a new path
+    [self makePath];
+    // make a new drawing of that path
+    [self makePathLayer];
+    // add new path to layer
+    [self.view.layer addSublayer:pathLayer];
+    // set duration
+    float d = cycles / fps;
     
-//    for(int i = 0; i < cycles; i++)
-//    {
-//        theta += delta;
-//        pos.x = scalar * sin(xFactor*theta) + size.width / 2;
-//        pos.y = scalar * sin(yFactor*theta) + size.height / 2;
-//    }
-//    
-//    [UIView animateWithDuration:1.0 animations:^{
-//        CABasicAnimation* anim = [CABasicAnimation animationWithKeyPath:@"position"];
-//        anim.fromValue = [NSValue valueWithCGPoint:dotView.layer.position];
-//        anim.toValue = [NSValue valueWithCGPoint:pos];
-//        anim.duration = 1.0/30.0;
-//        [dotView.layer addAnimation:anim forKey:@"AnimateFrame"];
-//        
-//    }];
+    // i'm not even sure this should be in an animation block? but apple seem
+    // so insistent on you using animation blocks in place of callbacks and UGH
+    // also how are you even supposed to align this mess?
+    [UIView animateWithDuration:d
+            delay:0.0
+            options:0
+            animations:^
+            {
+                 // these changes to the dotView's alpha server no
+                 // purpose visually -- they are only necessary here
+                 // because i don't know how to tie this animation
+                 // block's timing to the CABasicAnimation instead of
+                 // the 'animation' of this dummy dotView
+                 dotView.alpha = 0.0;
+                 dotView.alpha = 0.5;
+                 
+                 CABasicAnimation *anim;
+                 anim = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+                 anim.fromValue = [NSNumber numberWithFloat:0.0f];
+                 anim.toValue = [NSNumber numberWithFloat:1.0f];
+                 anim.duration = d;
+                 [pathLayer addAnimation:anim forKey:@"strokeEnd"];
+            }
+            completion:^(BOOL finished)
+            {
+                [pathLayer removeFromSuperlayer];
+                NSLog(@"done!");
+                [self animateDot];
+            }
+     ];
+}
+
+// make a global CGPath for use in [self makePathLayer]
+- (void) makePath
+{
+    float x, y, xFactor, yFactor, theta, delta, scalar;
+    CGSize size = self.view.frame.size;
+    path = CGPathCreateMutable();
+    
+    x = 0.0;
+    y = 0.0;
+    srand48(time(0));
+    // xFactor = (float)drand48() * 2.f;
+    // yFactor = (float)drand48() * 2.f;
+    xFactor = 0.8;
+    yFactor = 1.0;
+    theta = 0.0;
+    delta = 0.035;
+    scalar = size.width / 2.2;
+    
+    x = scalar * (sin(xFactor*theta)) + size.width / 2.0;
+    y = scalar * (sin(yFactor*theta)) + size.height / 2.0;
+    CGPathMoveToPoint(path, NULL, x, y);
+    for(int i = 0; i < cycles; i++)
+    {
+        CGPathAddLineToPoint(path, NULL, x, y);
+        theta += delta;
+        x = scalar * (sin(xFactor*theta)) + size.width / 2.0;
+        y = scalar * (sin(yFactor*theta)) + size.height / 2.0;
+    }
+}
+
+// make a global CAShapeLayer for use in [self animateDot]
+- (void) makePathLayer
+{
+    // is this check necessary? can we just make a new CAShapeLayer
+    // each time and let ARC clean up the mess?
+    if(!pathLayer)
+        pathLayer = [CAShapeLayer layer];
+    
+    pathLayer.frame = self.view.bounds;
+    pathLayer.path = path;
+    pathLayer.strokeColor = [[UIColor redColor] CGColor];
+    pathLayer.fillColor = nil;
+    pathLayer.lineWidth = 3.0f;
+    pathLayer.lineJoin = kCALineJoinBevel;
+    pathLayer.lineCap = kCALineCapRound;
+    
+    // possibly a way to make the dots appear, but also possibly
+    // not because no way to reflect speed of the drawing
+    // (that i can think of)
+    // pathLayer.lineDashPattern = @[@1,@5];
+
+}
+
+
+// ------------------------------------------------------
+// MISCELLANEOUS FUNCTIONS
+// ------------------------------------------------------
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 @end

@@ -15,10 +15,15 @@
     DotView *dotView;
     NSTimer *julesTimer;
     CADisplayLink *displayLink;
+    CGMutablePathRef path;
+    CAShapeLayer *pathLayer;
+    int cycles;
+    float fps;
 }
 
--(void) initTimer;
--(void) julesTimerCallBack;
+- (void) initTimer;
+- (void) julesTimerCallBack;
+- (void) animateDot;
 
 @end
 

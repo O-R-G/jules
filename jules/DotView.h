@@ -10,6 +10,7 @@
 {
 }
 
++ (Class)layerClass;
 - (void) drawDot;
 
 @end
