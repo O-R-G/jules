@@ -11,10 +11,15 @@
 #import "DotView.h"
 
 @interface ViewController : UIViewController {
+    
+    // old (redraw view) variables
     JulesView *julesView;
-    DotView *dotView;
     NSTimer *julesTimer;
-    CADisplayLink *displayLink;
+    CGRect julesArea;
+    int counter;
+    
+    // new (core animation) variables
+    DotView *dotView;
     CGMutablePathRef path;
     CAShapeLayer *pathLayer;
     int cycles;
@@ -24,6 +29,8 @@
 - (void) initTimer;
 - (void) julesTimerCallBack;
 - (void) animateDot;
+- (void) makePath;
+- (void) makePathLayer;
 
 @end
 

@@ -7,8 +7,6 @@
 //
 
 @interface DotView : UIView
-{
-}
 
 + (Class)layerClass;
 - (void) drawDot;

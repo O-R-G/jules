@@ -25,10 +25,6 @@
     return self;
 }
 
-//+ (Class) layerClass {
-//    return [CAShapeLayer class];
-//}
-
 - (void) drawDot:(CGRect)rect
 {
     UIBezierPath *path;
@@ -75,12 +71,12 @@
     
     
     // Check number of loops and redraw shape periodically
-    if(counter > 3600)
+    if(counter > 360)
     {
-        [self initShape];
-        // clear screen
-        [self setBackgroundColor:[UIColor blackColor]];
-        NSLog(@"%d", counter);
+//        [self initShape];
+//        // clear screen
+//        [self setBackgroundColor:[UIColor blackColor]];
+//        NSLog(@"%d", counter);
     }
     else
         counter++;

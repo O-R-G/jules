@@ -31,18 +31,19 @@
     float h = self.view.frame.size.height;
     
     // new way only
-    CGRect dotArea = CGRectMake(w/2,h/2, w/100, w/100);
-    dotView = [[DotView alloc] initWithFrame:dotArea];
-    [self.view addSubview: dotView];
-    cycles = 3600;
-    fps = 30.0;
-    [self animateDot];
+//    CGRect dotArea = CGRectMake(w/2,h/2, w/100, w/100);
+//    dotView = [[DotView alloc] initWithFrame:dotArea];
+//    [self.view addSubview: dotView];
+//    cycles = 3600;
+//    fps = 30.0;
+//    [self animateDot];
     
     // old way only
-//    CGRect julesArea = CGRectMake(0,0, w, h);
-//    julesView = [[JulesView alloc] initWithFrame:julesArea];
-//    [self.view addSubview: julesView];
-//    [self initTimer];
+    julesArea = CGRectMake(0,0, w, h);
+    julesView = [[JulesView alloc] initWithFrame:julesArea];
+    [self.view addSubview: julesView];
+    [self initTimer];
+    counter = 0;
 }
 
 
@@ -64,7 +65,19 @@
 
 -(void) julesTimerCallBack
 {
-    [julesView setNeedsDisplay];
+    if(counter > 3600)
+    {
+        [julesView removeFromSuperview];
+        julesView = [[JulesView alloc] initWithFrame:julesArea];
+        [self.view addSubview: julesView];
+        counter = 0;
+    }
+    else
+    {
+        [julesView setNeedsDisplay];
+         counter++;
+    }
+
 }
 
 // ------------------------------------------------------
@@ -93,7 +106,7 @@
             options:0
             animations:^
             {
-                 // these changes to the dotView's alpha server no
+                 // these changes to the dotView's alpha serve no
                  // purpose visually -- they are only necessary here
                  // because i don't know how to tie this animation
                  // block's timing to the CABasicAnimation instead of
@@ -110,8 +123,6 @@
             }
             completion:^(BOOL finished)
             {
-                [pathLayer removeFromSuperlayer];
-                NSLog(@"done!");
                 [self animateDot];
             }
      ];
@@ -127,10 +138,8 @@
     x = 0.0;
     y = 0.0;
     srand48(time(0));
-    // xFactor = (float)drand48() * 2.f;
-    // yFactor = (float)drand48() * 2.f;
-    xFactor = 0.8;
-    yFactor = 1.0;
+    xFactor = (float)drand48() * 2.f;
+    yFactor = (float)drand48() * 2.f;
     theta = 0.0;
     delta = 0.035;
     scalar = size.width / 2.2;

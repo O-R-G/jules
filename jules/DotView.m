@@ -19,13 +19,11 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [self drawDot];
+    // [self drawDot];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-//    if(self)
-//        [self initValues];
     return self;
 }
 
@@ -37,11 +35,6 @@
     // Set the render colors.
     [[UIColor blackColor] setFill];
     [path fill];
-}
-
-- (void) animate
-{
-    
 }
 
 @end
