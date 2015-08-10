@@ -17,10 +17,7 @@
     NSTimer *julesTimer;
     CGRect julesArea;
     int counter;
-//    float xFactor, yFactor, theta, alpha;
-//    CGSize size;
-//    CGFloat scalar, dotSize;
-//    CGPoint dotPoint, dotPointPrevious;
+    CGPoint dp1, dp2;
     
     // new (core animation) variables
     DotView *dotView;
@@ -32,6 +29,9 @@
 
 // @property (strong, nonatomic) IBOutlet UILabel *xLabel;
 @property (strong, nonatomic) IBOutlet UILabel *posLabel;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *speedLabel;
+
 
 // public methods
 - (void) enterBackground;

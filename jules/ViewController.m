@@ -33,11 +33,11 @@
     // [self.view setBackgroundColor:[UIColor redColor]];
     
     // old way + new way
-    float w = self.view.frame.size.width;
-    float h = self.view.frame.size.width;
-    float y = self.view.frame.size.height - h;
-    y = y / 2;
-    // self.xLabel.text = @"x-label";
+    float x, y, w, h;
+    w = self.view.frame.size.width;
+    h = self.view.frame.size.height;
+    x = 0;
+    y = (h - w) / 2;
     
     // new way only
 //    CGRect dotArea = CGRectMake(w/2,h/2, w/100, w/100);
@@ -48,7 +48,7 @@
 //    [self animateDot];
     
     // old way only
-    julesArea = CGRectMake(0,y, w, h);
+    julesArea = CGRectMake(x, y, w, w);
     [self startAnimation];
     [self initTimer];
 }
@@ -81,6 +81,9 @@
     julesView = [[JulesView alloc] initWithFrame:julesArea];
     julesView.clearsContextBeforeDrawing = NO;
     [self.view addSubview: julesView];
+//    dotView = [[DotView alloc] initWithFrame:julesArea];
+//    dotView.clearsContextBeforeDrawing = NO;
+//    [self.view addSubview: dotView];
     counter = 0;
 }
 
@@ -111,13 +114,18 @@
     }
     else
     {
+        dp2 = dp1;
         [julesView setNeedsDisplay];
-        self.posLabel.text = [NSString stringWithFormat:@"%d", counter];
+        // [dotView setNeedsDisplay];
+        dp1 = [julesView dotPoint];
+        float speed = (sqrt(powf((dp2.x - dp1.x), 2.0) + powf((dp2.y - dp1.y), 2.0)))*30.0;
+        self.speedLabel.text = [NSString stringWithFormat:@"%1.4f", speed];
+        self.posLabel.text = [NSString stringWithFormat:@"(%1.0f, %1.0f)", dp1.x, dp1.y];
+        self.timeLabel.text = [NSString stringWithFormat:@"00:%05.2f", counter / 30.0];
         counter++;
     }
 
 }
-
 
 // ------------------------------------------------------
 // NEW WAY FUNCTIONS
@@ -170,27 +178,27 @@
 // make a global CGPath for use in [self makePathLayer]
 - (void) makePath
 {
-    float x, y, xFactor, yFactor, theta, delta, scalar;
-    CGSize size = self.view.frame.size;
-    path = CGPathCreateMutable();
-    
-    srand48(time(0));
-    xFactor = (float)drand48() * 2.f;
-    yFactor = (float)drand48() * 2.f;
-    theta = 0.0;
-    delta = 0.035;
-    scalar = size.width / 2.2;
-    
-    x = scalar * (sin(xFactor*theta)) + size.width / 2.0;
-    y = scalar * (sin(yFactor*theta)) + size.height / 2.0;
-    CGPathMoveToPoint(path, NULL, x, y);
-    for(int i = 0; i < cycles; i++)
-    {
-        CGPathAddLineToPoint(path, NULL, x, y);
-        theta += delta;
-        x = scalar * (sin(xFactor*theta)) + size.width / 2.0;
-        y = scalar * (sin(yFactor*theta)) + size.height / 2.0;
-    }
+//    float x, y, xFactor, yFactor, theta, delta, scalar;
+//    CGSize size = self.view.frame.size;
+//    path = CGPathCreateMutable();
+//    
+//    srand48(time(0));
+//    xFactor = (float)drand48() * 2.f;
+//    yFactor = (float)drand48() * 2.f;
+//    theta = 0.0;
+//    delta = 0.035;
+//    scalar = size.width / 2.2;
+//    
+//    x = scalar * (sin(xFactor*theta)) + size.width / 2.0;
+//    y = scalar * (sin(yFactor*theta)) + size.height / 2.0;
+//    CGPathMoveToPoint(path, NULL, x, y);
+//    for(int i = 0; i < cycles; i++)
+//    {
+//        CGPathAddLineToPoint(path, NULL, x, y);
+//        theta += delta;
+//        x = scalar * (sin(xFactor*theta)) + size.width / 2.0;
+//        y = scalar * (sin(yFactor*theta)) + size.height / 2.0;
+//    }
 }
 
 // make a global CAShapeLayer for use in [self animateDot]

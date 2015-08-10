@@ -25,9 +25,6 @@
 - (void) drawFrame
 {
     UIBezierPath *path;
-    CGRect dotRect;
-    
-    dotRect.size = CGSizeMake(dotSize, dotSize);
     
     // draw current point
     dotRect.origin = dotPoint;
@@ -40,12 +37,12 @@
     path = [UIBezierPath bezierPathWithOvalInRect:dotRect];
     [[UIColor redColor] setFill];
     [path fill];
-//
-//    // draw previous point
-//    dotRect.origin = dotPointPP;
-//    path = [UIBezierPath bezierPathWithOvalInRect:dotRect];
-//    [[UIColor redColor] setFill];
-//    [path fill];
+
+    // draw previous point
+    dotRect.origin = dotPointPP;
+    path = [UIBezierPath bezierPathWithOvalInRect:dotRect];
+    [[UIColor redColor] setFill];
+    [path fill];
     
     // store this point for next loop
     dotPointPP = dotPointPrevious;
@@ -62,11 +59,11 @@
 // Initialize all values, make new lissajous
 - (void) initValues
 {
+    CGFloat dotSize;
     srand48(time(0));
     
     // float
     theta = 0.035;
-    alpha = .9;
     xFactor = (float)drand48() * 2.f;
     yFactor = (float)drand48() * 2.f;
     
@@ -77,13 +74,36 @@
     scalar = size.width / 2.2;
     dotSize = size.width / 100;
     
+    // CGRect
+    dotRect.size = CGSizeMake(dotSize, dotSize);
+    
     // CGPoint
     dotPoint.x = scalar * (sin(xFactor*theta) + size.width / 2);
     dotPoint.y = scalar * (sin(yFactor*theta) + size.height / 2);
     dotPointPrevious = dotPoint;
     dotPointPP = dotPointPrevious;
+    
+    // computer speed
 
     return;
+}
+
+
+// getters
+
+- (float) xFactor
+{
+    return xFactor;
+}
+
+- (float) yFactor
+{
+    return yFactor;
+}
+
+- (CGPoint) dotPoint
+{
+    return dotPoint;
 }
 
 @end

@@ -10,14 +10,14 @@
 
 @implementation DotView
 
-+ (Class)layerClass {
-    return [CAShapeLayer class];
-}
-
-
 - (void)drawRect:(CGRect)rect
 {
-    // [self drawDot];
+    // Create an oval shape to draw.
+    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
+    
+    // Set the render colors.
+    [[UIColor blueColor] setFill];
+    [path fill];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -25,14 +25,14 @@
     return self;
 }
 
-- (void) drawDot
+- (void) drawDot:(CGRect) rect
 {
-    // Create an oval shape to draw.
-    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
-    
-    // Set the render colors.
-    [[UIColor blackColor] setFill];
-    [path fill];
+//    // Create an oval shape to draw.
+//    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
+//    
+//    // Set the render colors.
+//    [[UIColor redColor] setFill];
+//    [path fill];
 }
 
 @end

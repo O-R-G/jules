@@ -11,7 +11,6 @@
 
 @interface DotView : UIView
 
-+ (Class)layerClass;
-- (void) drawDot;
+- (void) drawDot:(CGRect) rect;
 
 @end

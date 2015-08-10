@@ -12,16 +12,22 @@
 @interface JulesView : UIView
 {
     // Instance variables
-    float xFactor, yFactor, theta, alpha;
+    float xFactor, yFactor, theta;
     
     CGSize size;
     
     // CGFloat is typedef for float, could use float instead
     // but this seems better practice for drawing
-    CGFloat scalar, dotSize;
+    CGFloat scalar;
     
     CGPoint dotPoint, dotPointPrevious, dotPointPP;
+    
+    CGRect dotRect;
 }
+
+- (float) xFactor;
+- (float) yFactor;
+- (CGPoint) dotPoint;
 
 // default functions
 - (void)drawRect:(CGRect)rect;
