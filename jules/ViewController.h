@@ -26,8 +26,10 @@
     float fps;
 }
 
-- (void) initTimer;
-- (void) julesTimerCallBack;
+// public methods
+- (void) enterBackground;
+- (void) enterForeground;
+
 - (void) animateDot;
 - (void) makePath;
 - (void) makePathLayer;

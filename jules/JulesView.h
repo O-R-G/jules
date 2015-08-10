@@ -10,18 +10,21 @@
 {
     // Instance variables
     float xFactor, yFactor, theta, alpha;
-    int counter;
+    
+    CGSize size;
+    
     // CGFloat is typedef for float, could use float instead
     // but this seems better practice for drawing
     CGFloat xPos, yPos, scalar, dotSize;
-    CGSize size;
+    
     CGPoint dotPointPrevious;
 }
 
+// default functions
 - (void)drawRect:(CGRect)rect;
-- (void) drawDot:(CGRect)rect;
 - (id)initWithFrame:(CGRect)frame;
+
+// user-defined functions
 - (void)initValues;
-- (void)initShape;
 
 @end

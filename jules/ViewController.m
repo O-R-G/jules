@@ -8,6 +8,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
+#import "AppDelegate.h"
+
+@class AppDelegate;
 
 @interface ViewController ()
 
@@ -21,6 +24,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.viewController = self;
     
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -40,10 +46,8 @@
     
     // old way only
     julesArea = CGRectMake(0,0, w, h);
-    julesView = [[JulesView alloc] initWithFrame:julesArea];
-    [self.view addSubview: julesView];
+    [self startAnimation];
     [self initTimer];
-    counter = 0;
 }
 
 
@@ -51,26 +55,55 @@
 // OLD WAY FUNCTIONS
 // ------------------------------------------------------
 
--(void) initTimer
+// public methods
+- (void) enterBackground
 {
-    julesTimer = [NSTimer scheduledTimerWithTimeInterval:1.f/30.f
-                                         target:self
-                                       selector:@selector(julesTimerCallBack)
-                                       userInfo:nil
-                                        repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:julesTimer forMode:NSDefaultRunLoopMode];
+    [julesTimer invalidate];
+    [julesView removeFromSuperview];
+    
+    // i think this causes the timer and view to be released from memory?
+    julesTimer = nil;
+    julesView = nil;
+}
+
+- (void) enterForeground
+{
+    [self startAnimation];
+    [self initTimer];
+}
+
+// private methods
+- (void) startAnimation
+{
+    julesView = [[JulesView alloc] initWithFrame:julesArea];
+    [self.view addSubview: julesView];
+    counter = 0;
+}
+
+- (void) initTimer
+{
+    julesTimer = [NSTimer
+                    scheduledTimerWithTimeInterval:1.f/30.f
+                    target:self
+                    selector:@selector(julesTimerCallBack)
+                    userInfo:nil
+                    repeats:YES
+                  ];
+    
+    [[NSRunLoop currentRunLoop]
+        addTimer:julesTimer
+        forMode:NSDefaultRunLoopMode
+    ];
     
 
 }
 
--(void) julesTimerCallBack
+- (void) julesTimerCallBack
 {
     if(counter > 3600)
     {
         [julesView removeFromSuperview];
-        julesView = [[JulesView alloc] initWithFrame:julesArea];
-        [self.view addSubview: julesView];
-        counter = 0;
+        [self startAnimation];
     }
     else
     {
@@ -79,6 +112,7 @@
     }
 
 }
+
 
 // ------------------------------------------------------
 // NEW WAY FUNCTIONS
