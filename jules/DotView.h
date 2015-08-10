@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 o-r-g. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface DotView : UIView
 
 + (Class)layerClass;

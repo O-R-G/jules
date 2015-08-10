@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 o-r-g. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface JulesView : UIView
 {
     // Instance variables
@@ -15,9 +18,9 @@
     
     // CGFloat is typedef for float, could use float instead
     // but this seems better practice for drawing
-    CGFloat xPos, yPos, scalar, dotSize;
+    CGFloat scalar, dotSize;
     
-    CGPoint dotPointPrevious;
+    CGPoint dotPoint, dotPointPrevious, dotPointPP;
 }
 
 // default functions

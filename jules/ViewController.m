@@ -30,11 +30,14 @@
     
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self.view setBackgroundColor:[UIColor blackColor]];
+    // [self.view setBackgroundColor:[UIColor redColor]];
     
     // old way + new way
     float w = self.view.frame.size.width;
-    float h = self.view.frame.size.height;
+    float h = self.view.frame.size.width;
+    float y = self.view.frame.size.height - h;
+    y = y / 2;
+    // self.xLabel.text = @"x-label";
     
     // new way only
 //    CGRect dotArea = CGRectMake(w/2,h/2, w/100, w/100);
@@ -45,7 +48,7 @@
 //    [self animateDot];
     
     // old way only
-    julesArea = CGRectMake(0,0, w, h);
+    julesArea = CGRectMake(0,y, w, h);
     [self startAnimation];
     [self initTimer];
 }
@@ -76,6 +79,7 @@
 - (void) startAnimation
 {
     julesView = [[JulesView alloc] initWithFrame:julesArea];
+    julesView.clearsContextBeforeDrawing = NO;
     [self.view addSubview: julesView];
     counter = 0;
 }
@@ -108,7 +112,8 @@
     else
     {
         [julesView setNeedsDisplay];
-         counter++;
+        self.posLabel.text = [NSString stringWithFormat:@"%d", counter];
+        counter++;
     }
 
 }
@@ -169,8 +174,6 @@
     CGSize size = self.view.frame.size;
     path = CGPathCreateMutable();
     
-    x = 0.0;
-    y = 0.0;
     srand48(time(0));
     xFactor = (float)drand48() * 2.f;
     yFactor = (float)drand48() * 2.f;
