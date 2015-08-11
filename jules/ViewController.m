@@ -81,9 +81,6 @@
     julesView = [[JulesView alloc] initWithFrame:julesArea];
     julesView.clearsContextBeforeDrawing = NO;
     [self.view addSubview: julesView];
-//    dotView = [[DotView alloc] initWithFrame:julesArea];
-//    dotView.clearsContextBeforeDrawing = NO;
-//    [self.view addSubview: dotView];
     counter = 0;
 }
 
@@ -116,15 +113,19 @@
     {
         dp2 = dp1;
         [julesView setNeedsDisplay];
-        // [dotView setNeedsDisplay];
-        dp1 = [julesView dotPoint];
-        float speed = (sqrt(powf((dp2.x - dp1.x), 2.0) + powf((dp2.y - dp1.y), 2.0)))*30.0;
-        self.speedLabel.text = [NSString stringWithFormat:@"%1.4f", speed];
-        self.posLabel.text = [NSString stringWithFormat:@"(%1.0f, %1.0f)", dp1.x, dp1.y];
-        self.timeLabel.text = [NSString stringWithFormat:@"00:%05.2f", counter / 30.0];
+        dp1 = julesView.dotPoint;
+        [self updateLabels];
         counter++;
     }
 
+}
+
+- (void) updateLabels
+{
+    float speed = (sqrt(powf((dp2.x - dp1.x), 2.0) + powf((dp2.y - dp1.y), 2.0)))*30.0;
+    self.posLabel.text = [NSString stringWithFormat:@"(%1.0f, %1.0f)", dp1.x, dp1.y];
+    self.timeLabel.text = [NSString stringWithFormat:@"00:%05.2f", counter / 30.0];
+    self.speedLabel.text = [NSString stringWithFormat:@"%1.4f", speed];
 }
 
 // ------------------------------------------------------

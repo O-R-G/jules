@@ -20,19 +20,10 @@
     [path fill];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     return self;
-}
-
-- (void) drawDot:(CGRect) rect
-{
-//    // Create an oval shape to draw.
-//    UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
-//    
-//    // Set the render colors.
-//    [[UIColor redColor] setFill];
-//    [path fill];
 }
 
 @end

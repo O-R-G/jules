@@ -25,15 +25,6 @@
     CGRect dotRect;
 }
 
-- (float) xFactor;
-- (float) yFactor;
-- (CGPoint) dotPoint;
-
-// default functions
-- (void)drawRect:(CGRect)rect;
-- (id)initWithFrame:(CGRect)frame;
-
-// user-defined functions
-- (void)initValues;
+@property (readonly) CGPoint dotPoint;
 
 @end

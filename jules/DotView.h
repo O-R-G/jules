@@ -11,6 +11,4 @@
 
 @interface DotView : UIView
 
-- (void) drawDot:(CGRect) rect;
-
 @end

@@ -10,18 +10,24 @@
 
 @implementation JulesView
 
+@synthesize dotPoint;
+
+
+// inherited functions
 - (void)drawRect:(CGRect)rect
 {
     [self drawFrame];
 }
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if(self)
         [self initValues];
     return self;
 }
 
+// user-defined functions
 - (void) drawFrame
 {
     UIBezierPath *path;
@@ -82,28 +88,8 @@
     dotPoint.y = scalar * (sin(yFactor*theta) + size.height / 2);
     dotPointPrevious = dotPoint;
     dotPointPP = dotPointPrevious;
-    
-    // computer speed
 
     return;
-}
-
-
-// getters
-
-- (float) xFactor
-{
-    return xFactor;
-}
-
-- (float) yFactor
-{
-    return yFactor;
-}
-
-- (CGPoint) dotPoint
-{
-    return dotPoint;
 }
 
 @end

@@ -27,16 +27,15 @@
     float fps;
 }
 
-// @property (strong, nonatomic) IBOutlet UILabel *xLabel;
 @property (strong, nonatomic) IBOutlet UILabel *posLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *speedLabel;
-
 
 // public methods
 - (void) enterBackground;
 - (void) enterForeground;
 
+// old things
 - (void) animateDot;
 - (void) makePath;
 - (void) makePathLayer;
