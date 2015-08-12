@@ -25,6 +25,10 @@
     CGRect dotRect;
 }
 
+@property (readonly) CAShapeLayer *shapeLayer;
 @property (readonly) CGPoint dotPoint;
+
+- (void) initValues;
+- (void) df;
 
 @end

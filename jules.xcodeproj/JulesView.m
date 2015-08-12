@@ -11,12 +11,14 @@
 @implementation JulesView
 
 @synthesize dotPoint;
+@synthesize shapeLayer;
 
 
 // inherited functions
 - (void)drawRect:(CGRect)rect
 {
-    [self drawFrame];
+    // [self drawFrame];
+   [self setBackgroundColor:[UIColor blueColor]];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -90,6 +92,24 @@
     dotPointPP = dotPointPrevious;
 
     return;
+}
+
+- (void) df
+{
+    UIBezierPath *path2;
+    
+    dotRect.origin = dotPoint;
+    path2 = [UIBezierPath bezierPathWithOvalInRect:dotRect];
+    
+    shapeLayer = [CAShapeLayer layer];
+    shapeLayer.frame = self.bounds;
+    shapeLayer.fillColor = [[UIColor redColor] CGColor];
+    shapeLayer.path = path2.CGPath;
+    [self.layer addSublayer:shapeLayer];
+    
+    theta += 0.035;
+    dotPoint.x = scalar * (sin(xFactor*theta)) + size.width / 2;
+    dotPoint.y = scalar * (sin(yFactor*theta)) + size.height / 2;
 }
 
 @end
