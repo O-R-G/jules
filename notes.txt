@@ -14,3 +14,9 @@ Jules Antoine Lissajous
 40-2x (80)
 76-1x (76)
 76-2x (152)
+
+how to delete an app in itunes connect (very likely that you can’t):
+http://stackoverflow.com/questions/21461735/how-to-delete-an-app-from-itunesconnect
+
+how to change the bundle id in itunes connect (also potentially hazardous / impossible): 
+http://stackoverflow.com/questions/26523420/how-to-change-bundle-id-in-new-itunes-connect

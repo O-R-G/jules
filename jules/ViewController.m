@@ -27,6 +27,10 @@
 @synthesize xFactor;
 @synthesize yFactor;
 @synthesize theta;
+@synthesize dtheta;
+@synthesize mHz;
+@synthesize hzGranularity;
+@synthesize frameRate;
 
 // CGSize
 @synthesize size;
@@ -74,6 +78,9 @@
     y = (h - w) / 2;
     julesArea = CGRectMake(x, y, w, w);
     varsShown = NO;
+    frameRate = 30.f;
+    dtheta = 1.f/frameRate;
+    hzGranularity = 1000.f;
     
     // CGSize
     size = julesArea.size;
@@ -109,22 +116,27 @@
 - (void) startAnimation
 {
     srand48(time(0));
+    int g;
     
     // float
-    theta = 0.035;
+    theta = dtheta;
     xFactor = (float)drand48() * 2.f;
     yFactor = (float)drand48() * 2.f;
-
-    // CGPoint
-    dotPoint.x = scalar * (sin(xFactor*theta) + size.width / 2);
-    dotPoint.y = scalar * (sin(yFactor*theta) + size.height / 2);
+    g = gcd((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
+    mHz = dtheta*frameRate*((float)g)/6.f;
     
+    // CGPoint
+    dotPoint.x = scalar * sin(xFactor*theta) + size.width / 2;
+    dotPoint.y = scalar * sin(yFactor*theta) + size.height / 2;
+
     shapeLayers = [[NSMutableArray alloc] init];
     counter = 0;
 }
 
 - (void) drawFrame
 {
+    int g;
+    
     dotRect.origin = dotPoint;
     path = [UIBezierPath bezierPathWithOvalInRect:dotRect];
     
@@ -136,16 +148,38 @@
     [shapeLayers addObject:shapeLayer];
     
     // update values for next frame
-    theta += 0.035;
-    dotPoint.x = scalar * (sin(xFactor*theta)) + size.width / 2;
-    dotPoint.y = scalar * (sin(yFactor*theta)) + size.height / 2;
+    theta += dtheta;
+    dotPoint.x = scalar * sin(xFactor*theta) + size.width / 2;
+    dotPoint.y = scalar * sin(yFactor*theta) + size.height / 2;
+    
+    /*
+     * source: http://stackoverflow.com/questions/9620324/how-to-calculate-the-period-of-a-lissajous-curve
+     
+     * the frequency of the lissajous is GCF(xFactor, yFactor) / 2*PI
+     * but, this is assuming that one second = one second, which is not always
+     * when we change how much to jump ahead on the curve each time. we start
+     * out incrementing t by 1/30 (the frame rate) but allow the user to 
+     * increment t by a greater or lesser amount, thus we have to multiply 
+     * by the dtheta (ie, dt) adjustment and divide by the frame rate
+     *
+     * nb that it is not guaranteed that the lissajous even *has* a frequency
+     * (ok, well, technically, yes, it is guaranteed because xFactor and yFactor
+     * are both floating-point numbers and therefore xFactor / yFactor is 
+     * is rational so at some point the curve must close, but if we do not 
+     * truncate them (by multiplying by hzGranularity, eg 10^3 and casting to
+     * int) the curve might not close for a lonnnnnng time, and still in the
+     * case of truncating to the first three decimal places, will only close 
+     * after approx 10^3 seconds.
+     */
+    g = gcd((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
+    mHz = dtheta*frameRate*((float)g)/M_2_PI;
     counter++;
 }
 
 - (void) initTimer
 {
     julesTimer = [NSTimer
-                    scheduledTimerWithTimeInterval:1.f/30.f
+                    scheduledTimerWithTimeInterval:1.f/frameRate
                     target:self
                     selector:@selector(julesTimerCallBack)
                     userInfo:nil
@@ -176,10 +210,7 @@
 
 - (void) updateLabels
 {
-    float speed = (sqrt(powf((dp2.x - dotPoint.x), 2.0) + powf((dp2.y - dotPoint.y), 2.0)))*30.0;
-    self.posLabel.text = [NSString stringWithFormat:@"(%1.0f, %1.0f)", dotPoint.x, dotPoint.y];
-    self.timeLabel.text = [NSString stringWithFormat:@"00:%05.2f", counter / 30.0];
-    self.speedLabel.text = [NSString stringWithFormat:@"%1.4f", speed];
+    self.hzLabel.text = [NSString stringWithFormat:@"%1.2f mHz", mHz];
 }
 
 // ------------------------------------------------------
@@ -232,6 +263,25 @@
      ];
 }
 
+int gcd(int m, int n)
+{
+    int t, r;
+    
+    if (m < n)
+    {
+        t = m;
+        m = n;
+        n = t;
+    }
+    
+    r = m % n;
+    
+    if (r == 0)
+        return n;
+    else
+        return gcd(n, r);
+}
+
 // ------------------------------------------------------
 // ACTIONS
 // ------------------------------------------------------
@@ -251,17 +301,36 @@
 {
     if(varsShown)
     {
-        self.posLabel.hidden = YES;
-        self.timeLabel.hidden = YES;
-        self.speedLabel.hidden = YES;
+        self.hzLabel.hidden = YES;
+        // self.speedLabel.hidden = YES;
         varsShown = NO;
     }
     else
     {
-        self.posLabel.hidden = NO;
-        self.timeLabel.hidden = NO;
-        self.speedLabel.hidden = NO;
+        self.hzLabel.hidden = NO;
+        // self.speedLabel.hidden = NO;
         varsShown = YES;
+    }
+}
+
+- (IBAction)panAction:(UIPanGestureRecognizer *)sender
+{
+    float incrementSize = 100000.f;
+    CGPoint translation = [sender translationInView:self.view];
+    float d = dtheta - (translation.y / incrementSize);
+    if(d < 0.001f)
+        d = 0.001f;
+    if(d > .2f)
+        d = .2f;
+    dtheta = d;
+}
+
+- (IBAction)doublePanAction:(UIPanGestureRecognizer *)sender
+{
+     if(sender.state == UIGestureRecognizerStateBegan)
+     {
+         [self enterBackground];
+         [self enterForeground];
     }
 }
 

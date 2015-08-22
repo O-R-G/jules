@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -16,15 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(x, y)" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2h-Jd-cpO">
-                                <rect key="frame" x="20" y="20" width="200" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="72c-KJ-t0b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xFactor" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVw-eD-TZ9">
                                 <rect key="frame" x="480" y="20" width="100" height="17"/>
                                 <constraints>
@@ -45,11 +36,10 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="XVw-eD-TZ9" firstAttribute="trailing" secondItem="Cij-42-0gD" secondAttribute="trailing" id="24h-cm-KTE"/>
-                            <constraint firstItem="s2h-Jd-cpO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="7KR-cm-uDQ"/>
-                            <constraint firstItem="s2h-Jd-cpO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="AtN-nB-yAE"/>
                             <constraint firstItem="Cij-42-0gD" firstAttribute="top" secondItem="XVw-eD-TZ9" secondAttribute="bottom" constant="5" id="N95-mg-V4P"/>
                             <constraint firstItem="XVw-eD-TZ9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="Rbu-2k-XYt"/>
                             <constraint firstAttribute="trailing" secondItem="Cij-42-0gD" secondAttribute="trailing" constant="20" id="VG9-zK-Tga"/>
@@ -59,6 +49,8 @@
                             <outletCollection property="gestureRecognizers" destination="X5b-jJ-hnG" appends="YES" id="Rar-7A-3DT"/>
                             <outletCollection property="gestureRecognizers" destination="epJ-oq-ao1" appends="YES" id="nDQ-2A-Gxt"/>
                             <outletCollection property="gestureRecognizers" destination="fyD-uV-TnX" appends="YES" id="Oeq-DH-ehd"/>
+                            <outletCollection property="gestureRecognizers" destination="i4g-Cg-ZHb" appends="YES" id="xwW-Ws-ttp"/>
+                            <outletCollection property="gestureRecognizers" destination="hwg-6G-6BX" appends="YES" id="vyg-rc-enE"/>
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -66,9 +58,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="posLabel" destination="s2h-Jd-cpO" id="z8f-7s-sQZ"/>
-                        <outlet property="speedLabel" destination="Cij-42-0gD" id="WNt-et-sT3"/>
-                        <outlet property="timeLabel" destination="XVw-eD-TZ9" id="Gt6-Qt-i2V"/>
+                        <outlet property="hzLabel" destination="XVw-eD-TZ9" id="Rtk-g2-kM0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,6 +77,16 @@
                         <action selector="longPressAction:" destination="BYZ-38-t0r" id="tub-lD-BqO"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" maximumNumberOfTouches="1" id="i4g-Cg-ZHb">
+                    <connections>
+                        <action selector="panAction:" destination="BYZ-38-t0r" id="Yue-Oe-A45"/>
+                    </connections>
+                </panGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="2" maximumNumberOfTouches="2" id="hwg-6G-6BX">
+                    <connections>
+                        <action selector="doublePanAction:" destination="BYZ-38-t0r" id="q1w-od-B4i"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
         </scene>
     </scenes>

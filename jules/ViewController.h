@@ -16,6 +16,10 @@
 @property (readonly) float xFactor;
 @property (readonly) float yFactor;
 @property (readonly) float theta;
+@property (readonly) float dtheta;
+@property (readonly) float mHz;
+@property (readonly) float hzGranularity;
+@property (readonly) float frameRate;
 @property (readonly) CGSize size;
 @property (readonly) CGFloat scalar;
 @property (readonly) CGPoint dotPoint;
@@ -27,13 +31,13 @@
 @property (readonly) NSTimer *julesTimer;
 @property (readonly) UIBezierPath *path;
 
-@property (strong, nonatomic) IBOutlet UILabel *posLabel;
-@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *speedLabel;
+@property (strong, nonatomic) IBOutlet UILabel *hzLabel;
 
 - (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender;
 - (IBAction)doubleTapAction:(UITapGestureRecognizer *)sender;
 - (IBAction)tapAction:(UITapGestureRecognizer *)sender;
+- (IBAction)panAction:(UIPanGestureRecognizer *)sender;
+- (IBAction)doublePanAction:(UIPanGestureRecognizer *)sender;
 
 // public methods
 - (void) enterBackground;
