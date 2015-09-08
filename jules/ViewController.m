@@ -17,9 +17,6 @@
 
 @implementation ViewController
 
-// BOOL
-@synthesize varsShown;
-
 // int
 @synthesize counter;
 @synthesize orderOfMagnitude;
@@ -78,7 +75,6 @@
     x = 0;
     y = (h - w) / 2;
     julesArea = CGRectMake(x, y, w, w);
-    varsShown = NO;
     frameRate = 30.f;
     dtheta = 1.f/frameRate;
     hzGranularity = 1000.f;
@@ -127,7 +123,7 @@
     yFactor = roundToN(drand48()*2.f, orderOfMagnitude) + pow(10, orderOfMagnitude);
     NSLog(@"%1.5f", yFactor);
     g = gcf((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
-    mHz = dtheta*frameRate*((float)g)/M_2_PI;
+    mHz = dtheta*frameRate*((float)g)/M_2_PI*pow(10, orderOfMagnitude);
     
     // CGPoint
     dotPoint.x = scalar * sin(xFactor*theta) + size.width / 2;
@@ -176,7 +172,7 @@
      * after approx 10^3 seconds.
      */
     g = gcf((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
-    mHz = dtheta*frameRate*((float)g)/M_2_PI;
+    mHz = dtheta*frameRate*((float)g)/M_2_PI*pow(10, orderOfMagnitude);
     counter++;
 }
 
@@ -214,7 +210,7 @@
 
 - (void) updateLabels
 {
-    self.hzLabel.text = [NSString stringWithFormat:@"%1.2f mHz", mHz];
+    self.hzLabel.text = [NSString stringWithFormat:@"%1.5f Hz", mHz];
 }
 
 // ------------------------------------------------------
@@ -255,16 +251,16 @@
     [window addSubview:flashView];
     
     [UIView
-     animateWithDuration:0.5f
-     animations:^
-     {
-         flashView.alpha = 0.0f;
-     }
-     completion:^(BOOL finished)
-     {
-         [flashView removeFromSuperview];
-     }
+         animateWithDuration:0.75f animations:^{
+             flashView.alpha = 0.0f;
+         }
+         completion:^(BOOL finished) {
+             [flashView removeFromSuperview];
+         }
      ];
+    
+    // play camera sound
+    AudioServicesPlaySystemSound(1108);
 }
 
 int gcf(int m, int n)
@@ -303,36 +299,18 @@ float roundToN(float num, int p)
 // ACTIONS
 // ------------------------------------------------------
 
-- (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender
-{
-    if(sender.state == UIGestureRecognizerStateBegan)
-        [self takeScreenshot];
-}
-
-- (IBAction)doubleTapAction:(UITapGestureRecognizer *)sender
-{
-    [self takeScreenshot];
-}
-
+// action: double tap
+// result: show / hide hz label
 - (IBAction)tapAction:(UITapGestureRecognizer *)sender
 {
-    if(varsShown)
-    {
-        self.hzLabel.hidden = YES;
-        // self.speedLabel.hidden = YES;
-        varsShown = NO;
-    }
-    else
-    {
-        self.hzLabel.hidden = NO;
-        // self.speedLabel.hidden = NO;
-        varsShown = YES;
-    }
+    self.hzLabel.hidden = !self.hzLabel.hidden;
 }
 
+// action: swipe screen with one finger
+// result: update hz (if hzlabel visible)
 - (IBAction)panAction:(UIPanGestureRecognizer *)sender
 {
-    if(varsShown)
+    if(!self.hzLabel.hidden)
     {
         float incrementSize = 100000.f;
         CGPoint translation = [sender translationInView:self.view];
@@ -345,6 +323,8 @@ float roundToN(float num, int p)
     }
 }
 
+// action: swipe screen with two fingers
+// result: reset screen
 - (IBAction)doublePanAction:(UIPanGestureRecognizer *)sender
 {
      if(sender.state == UIGestureRecognizerStateBegan)
@@ -353,5 +333,22 @@ float roundToN(float num, int p)
          [self enterForeground];
     }
 }
+
+
+// action: press and hold
+// result: take screenshot
+- (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender
+{
+    if(sender.state == UIGestureRecognizerStateBegan)
+        [self takeScreenshot];
+}
+
+// action: tap with two fingers
+// result: take screenshot
+- (IBAction)doubleTapAction:(UITapGestureRecognizer *)sender
+{
+    [self takeScreenshot];
+}
+
 
 @end

@@ -16,7 +16,7 @@
     UIBezierPath *path = [UIBezierPath bezierPathWithOvalInRect:rect];
     
     // Set the render colors.
-    [[UIColor blueColor] setFill];
+    [[UIColor blackColor] setFill];
     [path fill];
 }
 

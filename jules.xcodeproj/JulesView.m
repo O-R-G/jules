@@ -18,7 +18,7 @@
 - (void)drawRect:(CGRect)rect
 {
     // [self drawFrame];
-   [self setBackgroundColor:[UIColor blueColor]];
+   [self setBackgroundColor:[UIColor blackColor]];
 }
 
 - (id)initWithFrame:(CGRect)frame

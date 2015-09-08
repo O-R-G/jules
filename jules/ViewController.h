@@ -8,10 +8,10 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface ViewController : UIViewController
 
-@property (readonly) BOOL varsShown;
 @property (readonly) int counter;
 @property (readonly) int orderOfMagnitude;
 @property (readonly) float xFactor;
