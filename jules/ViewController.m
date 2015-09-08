@@ -22,6 +22,7 @@
 
 // int
 @synthesize counter;
+@synthesize orderOfMagnitude;
 
 // float
 @synthesize xFactor;
@@ -81,6 +82,7 @@
     frameRate = 30.f;
     dtheta = 1.f/frameRate;
     hzGranularity = 1000.f;
+    orderOfMagnitude = -3;
     
     // CGSize
     size = julesArea.size;
@@ -120,10 +122,12 @@
     
     // float
     theta = dtheta;
-    xFactor = (float)drand48() * 2.f;
-    yFactor = (float)drand48() * 2.f;
-    g = gcd((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
-    mHz = dtheta*frameRate*((float)g)/6.f;
+    xFactor = roundToN(drand48()*2.f, orderOfMagnitude) + pow(10, orderOfMagnitude);
+    NSLog(@"%1.5f", xFactor);
+    yFactor = roundToN(drand48()*2.f, orderOfMagnitude) + pow(10, orderOfMagnitude);
+    NSLog(@"%1.5f", yFactor);
+    g = gcf((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
+    mHz = dtheta*frameRate*((float)g)/M_2_PI;
     
     // CGPoint
     dotPoint.x = scalar * sin(xFactor*theta) + size.width / 2;
@@ -171,7 +175,7 @@
      * case of truncating to the first three decimal places, will only close 
      * after approx 10^3 seconds.
      */
-    g = gcd((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
+    g = gcf((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
     mHz = dtheta*frameRate*((float)g)/M_2_PI;
     counter++;
 }
@@ -263,7 +267,7 @@
      ];
 }
 
-int gcd(int m, int n)
+int gcf(int m, int n)
 {
     int t, r;
     
@@ -279,7 +283,20 @@ int gcd(int m, int n)
     if (r == 0)
         return n;
     else
-        return gcd(n, r);
+        return gcf(n, r);
+}
+
+float roundToN(float num, int p)
+{
+    if(p == 0)
+        return roundf(num);
+    
+    float f = pow(10, 0-p);
+    float n = roundf(f * num)/f;
+    if(p > 0)
+        n = roundf(n);
+    
+    return n;
 }
 
 // ------------------------------------------------------
@@ -315,14 +332,17 @@ int gcd(int m, int n)
 
 - (IBAction)panAction:(UIPanGestureRecognizer *)sender
 {
-    float incrementSize = 100000.f;
-    CGPoint translation = [sender translationInView:self.view];
-    float d = dtheta - (translation.y / incrementSize);
-    if(d < 0.001f)
-        d = 0.001f;
-    if(d > .2f)
-        d = .2f;
-    dtheta = d;
+    if(varsShown)
+    {
+        float incrementSize = 100000.f;
+        CGPoint translation = [sender translationInView:self.view];
+        float d = dtheta - (translation.y / incrementSize);
+        if(d < 0.001f)
+            d = 0.001f;
+        if(d > .2f)
+            d = .2f;
+        dtheta = d;
+    }
 }
 
 - (IBAction)doublePanAction:(UIPanGestureRecognizer *)sender

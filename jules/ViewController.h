@@ -13,6 +13,7 @@
 
 @property (readonly) BOOL varsShown;
 @property (readonly) int counter;
+@property (readonly) int orderOfMagnitude;
 @property (readonly) float xFactor;
 @property (readonly) float yFactor;
 @property (readonly) float theta;
