@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>28B7E0DE-DD12-4DF5-85CB-332F54047671</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>jules</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>CCFB6289040D69402325CD02413CDAD51404555C</key>
 		<string>github.com:O-R-G/jules.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>jules.xcodeproj/project.xcworkspace</string>
+	<string>jules.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>CCFB6289040D69402325CD02413CDAD51404555C</key>
