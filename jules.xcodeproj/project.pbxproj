@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07FEB734212B582C00DA60BA /* jules.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jules.entitlements; sourceTree = "<group>"; };
 		2A7464AA1B70F8920093B3EA /* jules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7464AE1B70F8920093B3EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7464AF1B70F8920093B3EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		2A7464AC1B70F8920093B3EA /* jules */ = {
 			isa = PBXGroup;
 			children = (
+				07FEB734212B582C00DA60BA /* jules.entitlements */,
 				2A86782C1B7259AD00733B0A /* DotView.h */,
 				2A86782A1B72599200733B0A /* DotView.m */,
 				2A7464D31B710D9E0093B3EA /* JulesView.h */,
@@ -179,6 +181,11 @@
 					2A7464A91B70F8920093B3EA = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 2T5W462SEL;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					2A7464C21B70F8920093B3EA = {
 						CreatedOnToolsVersion = 6.4;
@@ -365,6 +372,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = jules/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -378,6 +386,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = jules/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
