@@ -7,13 +7,7 @@
 //
 
 #import "InterfaceController.h"
-// #import "HelloScene.h"
 #import <SpriteKit/SpriteKit.h>
-
-@interface InterfaceController ()
-
-@end
-
 
 @implementation InterfaceController
 
@@ -33,8 +27,6 @@
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
-    // HelloScene *hello = [[HelloScene alloc] initWithSize:CGSizeMake(200, 200)];
-
 }
 
 - (void)didDeactivate {
