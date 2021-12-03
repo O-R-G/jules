@@ -18,10 +18,19 @@
     // present it in the mainScene "holder" which itself is inside a spriteKit scene viewer of type WKInterfaceSKScene
     // will basically transppose logic from JulesView (ios) and
     // add that to this spriteKit scene
-    // i need better names for these nester views, scenes 
-    SKScene *main = [[SKScene alloc] initWithSize:CGSizeMake(100, 100)];
-    main.backgroundColor = [SKColor blueColor];
-    [main addChild: [self newHelloNode]];
+    // i need better names for these nester views, scenes
+    // init scene object (also could assign the spritekit scene in storyboard to a class)
+    // size is arbitrary in points, then adjusted to display resolution
+    
+    SKScene *main = [[SKScene alloc] initWithSize:CGSizeMake(1000, 1000)];
+    main.backgroundColor = [SKColor blackColor];
+    main.scaleMode = SKSceneScaleModeAspectFit;
+
+    // populate scene
+    // [main addChild: [self textNode]];
+    [main addChild: [self dotNode]];
+    
+    // present scene
     [self.mainScene presentScene: main];
 }
 
@@ -33,12 +42,18 @@
     // This method is called when watch view controller is no longer visible
 }
 
-- (SKLabelNode *)newHelloNode {
-    SKLabelNode *helloNode = [SKLabelNode labelNodeWithFontNamed: @"Chalkduster"];
-    helloNode.text = @"hello, world";
-    helloNode.fontSize = 18;
-    helloNode.position = CGPointMake(10,10);
-    return helloNode;
+- (SKLabelNode *)textNode {
+    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed: @"Chalkduster"];
+    textNode.text = @"hello, world";
+    textNode.fontSize = 18;
+    textNode.position = CGPointMake(500,10);
+    return textNode;
+}
+
+- (SKSpriteNode *)dotNode {
+    SKSpriteNode *dotNode = [SKSpriteNode spriteNodeWithImageNamed:@"dot-100.png"];
+    dotNode.position = CGPointMake(500,500);
+    return dotNode;
 }
 
 @end
