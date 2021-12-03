@@ -8,4 +8,6 @@ x borrow logic from AfterHisBeautifulMachineof1855
 
 + add spritenode as png
 
++ work out SKScene update logic, based on FaceScene example and .scs file
+
 - add all drawing logic from JulesView into InterfaceController view

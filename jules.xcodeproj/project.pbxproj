@@ -25,6 +25,8 @@
 		931D10CF27594A320098FFB1 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D10CE27594A320098FFB1 /* ComplicationController.m */; };
 		931D10D127594A340098FFB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 931D10D027594A340098FFB1 /* Assets.xcassets */; };
 		931D10D627594A340098FFB1 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 931D10B427594A2F0098FFB1 /* watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9358683E275ACFDB00ECAACB /* FaceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9358683D275ACFDB00ECAACB /* FaceScene.m */; };
+		93586840275AD0BB00ECAACB /* FaceScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9358683F275AD0BB00ECAACB /* FaceScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,9 @@
 		931D10D027594A340098FFB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		931D10D227594A340098FFB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		931D10D327594A340098FFB1 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		9358683C275ACFDB00ECAACB /* FaceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceScene.h; sourceTree = "<group>"; };
+		9358683D275ACFDB00ECAACB /* FaceScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceScene.m; sourceTree = "<group>"; };
+		9358683F275AD0BB00ECAACB /* FaceScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FaceScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +222,8 @@
 		931D10C327594A320098FFB1 /* watch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				9358683C275ACFDB00ECAACB /* FaceScene.h */,
+				9358683D275ACFDB00ECAACB /* FaceScene.m */,
 				931D10C427594A320098FFB1 /* InterfaceController.h */,
 				931D10C527594A320098FFB1 /* InterfaceController.m */,
 				931D10C727594A320098FFB1 /* ExtensionDelegate.h */,
@@ -225,6 +232,7 @@
 				931D10CB27594A320098FFB1 /* NotificationController.m */,
 				931D10CD27594A320098FFB1 /* ComplicationController.h */,
 				931D10CE27594A320098FFB1 /* ComplicationController.m */,
+				9358683F275AD0BB00ECAACB /* FaceScene.sks */,
 				931D10D027594A340098FFB1 /* Assets.xcassets */,
 				931D10D227594A340098FFB1 /* Info.plist */,
 				931D10D327594A340098FFB1 /* PushNotificationPayload.apns */,
@@ -393,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931D10D127594A340098FFB1 /* Assets.xcassets in Resources */,
+				93586840275AD0BB00ECAACB /* FaceScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931D10C927594A320098FFB1 /* ExtensionDelegate.m in Sources */,
+				9358683E275ACFDB00ECAACB /* FaceScene.m in Sources */,
 				931D10CF27594A320098FFB1 /* ComplicationController.m in Sources */,
 				931D10C627594A320098FFB1 /* InterfaceController.m in Sources */,
 				931D10CC27594A320098FFB1 /* NotificationController.m in Sources */,

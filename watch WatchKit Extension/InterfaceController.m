@@ -8,6 +8,7 @@
 
 #import "InterfaceController.h"
 #import <SpriteKit/SpriteKit.h>
+#import "FaceScene.h"
 
 @implementation InterfaceController
 
@@ -22,16 +23,29 @@
     // init scene object (also could assign the spritekit scene in storyboard to a class)
     // size is arbitrary in points, then adjusted to display resolution
     
+    // CGSize currentDeviceSize = [WKInterfaceDevice currentDevice].screenBounds.size;
+
+    // programmatically add scene
+    /*
     SKScene *main = [[SKScene alloc] initWithSize:CGSizeMake(1000, 1000)];
     main.backgroundColor = [SKColor blackColor];
     main.scaleMode = SKSceneScaleModeAspectFit;
-
+    
     // populate scene
     // [main addChild: [self textNode]];
     [main addChild: [self dotNode]];
+     // [scene addChild: [self dotNode]];
+    */
     
+    FaceScene *mainScene = [FaceScene nodeWithFileNamed:@"FaceScene"];
+    
+    mainScene.backgroundColor = [SKColor blueColor];
+
+    [mainScene addChild: [self dotNode]];
+
     // present scene
-    [self.mainScene presentScene: main];
+    // [self.mainScene presentScene: main];
+    [self.mainScene presentScene: mainScene];
 }
 
 - (void)willActivate {
@@ -52,7 +66,7 @@
 
 - (SKSpriteNode *)dotNode {
     SKSpriteNode *dotNode = [SKSpriteNode spriteNodeWithImageNamed:@"dot-100.png"];
-    dotNode.position = CGPointMake(500,500);
+    dotNode.position = CGPointMake(0,0);
     return dotNode;
 }
 
