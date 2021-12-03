@@ -6,4 +6,6 @@ x borrow logic from AfterHisBeautifulMachineof1855
     * https://developer.apple.com/documentation/watchkit/wkinterfaceskscene/configuring_a_watchkit_scene_in_a_storyboard?language=objc
     * https://github.com/bikemap/AppleWatchSpriteKit
 
++ add spritenode as png
+
 - add all drawing logic from JulesView into InterfaceController view
