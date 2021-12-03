@@ -11,7 +11,7 @@
             <objects>
                 <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <spriteKitScene alignment="left" scene="mainScene" id="d2n-Ir-iWM"/>
+                        <spriteKitScene alignment="left" id="d2n-Ir-iWM"/>
                     </items>
                     <connections>
                         <outlet property="mainScene" destination="d2n-Ir-iWM" id="Umg-cA-uKf"/>

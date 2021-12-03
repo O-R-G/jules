@@ -7,6 +7,7 @@
 //
 
 #import <WatchKit/WatchKit.h>
+#import <SceneKit/SceneKit.h>
 #import <Foundation/Foundation.h>
 
 @interface InterfaceController : WKInterfaceController {
@@ -25,7 +26,7 @@
 
 // Additional (non-static) methods
 
-- (void) initValues;
-- (void) initShape;
+// - (void) initValues;
+// - (void) initShape;
 
 @end
