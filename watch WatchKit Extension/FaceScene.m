@@ -1,11 +1,32 @@
 //
 //  FaceScene.m
 //
+//  derived from https://github.com/steventroughtonsmith/SpriteKitWatchFace
+//
+
+/*
+    add initLissajousInit, CGPoint (?) calculateLissajous (to get next point to draw)
+    look into counter logic and how often updates, spriteKit framerate
+    can that be displayed
+
+    for lissajous logic, see jules/ViewController
+
+    eventually add digital crown to adjust Hz
+*/
+
+
+
 
 #import "FaceScene.h"
 
 
 @implementation FaceScene
+
+// instance variables
+
+@synthesize counter;
+
+
 
 
 // init
@@ -23,6 +44,7 @@
 - (void)setupScene {
 
     [self addChild: [self dotNode]];
+    counter = 0;
 }
 
 
@@ -34,6 +56,10 @@
 - (void)update:(NSTimeInterval)currentTime forScene:(SKScene *)scene {
     
 	[self updateHands];
+    if (counter % 7 == 0) {
+        [self addChild: [self dotNode]];
+    }
+    counter++;
 }
 
 - (void)updateHands {
@@ -41,24 +67,10 @@
 	NSDate *now = [NSDate date];
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond| NSCalendarUnitNanosecond) fromDate:now];
-	
-	SKNode *face = [self childNodeWithName:@"Face"];	
-	// SKNode *hourHand = [face childNodeWithName:@"Hours"];
-	// SKNode *minuteHand = [face childNodeWithName:@"Minutes"];
-	// SKNode *secondHand = [face childNodeWithName:@"Seconds"];
-    face.hidden = TRUE;         // clearly a better way to do this (!)
-                                // like in the .scs
-
-    // update this with counter
-    // may need an array[] of dots as in pickup sticks
 
 	SKNode *dot = [self childNodeWithName:@"dottie"];
     CGFloat seconds = (2*M_PI)/60 * (CGFloat)(components.second + 1.0/NSEC_PER_SEC*components.nanosecond) * 10;
     dot.position = CGPointMake(seconds,0);  
-
-	// hourHand.zRotation =  - (2*M_PI)/12.0 * (CGFloat)(components.hour%12 + 1.0/60.0*components.minute);
-	// minuteHand.zRotation =  - (2*M_PI)/60.0 * (CGFloat)(components.minute + 1.0/60.0*components.second);
-	// secondHand.zRotation = - (2*M_PI)/60 * (CGFloat)(components.second + 1.0/NSEC_PER_SEC*components.nanosecond);
 }
 
 
@@ -78,7 +90,7 @@
 
 - (SKSpriteNode *)dotNode {
     SKSpriteNode *dotNode = [SKSpriteNode spriteNodeWithImageNamed:@"dot-100.png"];
-    dotNode.position = CGPointMake(0,0);
+    dotNode.position = CGPointMake(counter/1.5,counter*0.5);
     dotNode.size = CGSizeMake(10,10);   // better to use scaleToSize function? as relative to parent 
                                         // or better yet, SKNode - setScale
     dotNode.name = @"dottie";
