@@ -39,9 +39,9 @@
     
     FaceScene *mainScene = [FaceScene nodeWithFileNamed:@"FaceScene"];
     
-    mainScene.backgroundColor = [SKColor blueColor];
+    // mainScene.backgroundColor = [SKColor blueColor];
 
-    [mainScene addChild: [self dotNode]];
+    // [mainScene addChild: [self dotNode]];
 
     // present scene
     // [self.mainScene presentScene: main];
