@@ -10,23 +10,8 @@
 #import <SceneKit/SceneKit.h>
 #import <Foundation/Foundation.h>
 
-@interface InterfaceController : WKInterfaceController {
-
-    // Instance variables
-
-    int counter;
-    float xFactor, yFactor, theta, alpha;
-    CGFloat xPos, yPos, scaler, dotSize;
-    CGSize size;
-    CGPoint dotPointPrevious;
-    NSMutableArray *points;
-}
+@interface InterfaceController : WKInterfaceController 
 
 @property (strong, nonatomic) IBOutlet WKInterfaceSKScene *mainScene;
-
-// Additional (non-static) methods
-
-// - (void) initValues;
-// - (void) initShape;
 
 @end

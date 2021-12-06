@@ -14,37 +14,15 @@
 
 - (void)awakeWithContext:(id)context {
     // Configure interface objects here.
-    
-    // make a scene object
-    // present it in the mainScene "holder" which itself is inside a spriteKit scene viewer of type WKInterfaceSKScene
-    // will basically transppose logic from JulesView (ios) and
-    // add that to this spriteKit scene
-    // i need better names for these nester views, scenes
-    // init scene object (also could assign the spritekit scene in storyboard to a class)
-    // size is arbitrary in points, then adjusted to display resolution
-    
-    // CGSize currentDeviceSize = [WKInterfaceDevice currentDevice].screenBounds.size;
 
-    // programmatically add scene
     /*
-    SKScene *main = [[SKScene alloc] initWithSize:CGSizeMake(1000, 1000)];
-    main.backgroundColor = [SKColor blackColor];
-    main.scaleMode = SKSceneScaleModeAspectFit;
-    
-    // populate scene
-    // [main addChild: [self textNode]];
-    [main addChild: [self dotNode]];
-     // [scene addChild: [self dotNode]];
-    */
+        using storyboard with InterfaceController which contains
+        mainScene WKINterfaceScene holder object to display FaceScene class
+        where all the main logic exists, mostly copied from jules/ViewController
+        but instead of Core Animation, using SpriteKit
+    */  
     
     FaceScene *mainScene = [FaceScene nodeWithFileNamed:@"FaceScene"];
-    
-    // mainScene.backgroundColor = [SKColor blueColor];
-
-    // [mainScene addChild: [self dotNode]];
-
-    // present scene
-    // [self.mainScene presentScene: main];
     [self.mainScene presentScene: mainScene];
 }
 
@@ -54,20 +32,6 @@
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
-}
-
-- (SKLabelNode *)textNode {
-    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed: @"Chalkduster"];
-    textNode.text = @"hello, world";
-    textNode.fontSize = 18;
-    textNode.position = CGPointMake(500,10);
-    return textNode;
-}
-
-- (SKSpriteNode *)dotNode {
-    SKSpriteNode *dotNode = [SKSpriteNode spriteNodeWithImageNamed:@"dot-100.png"];
-    dotNode.position = CGPointMake(0,0);
-    return dotNode;
 }
 
 @end
