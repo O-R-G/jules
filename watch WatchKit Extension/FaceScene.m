@@ -33,8 +33,6 @@
 
 
 
-
-
 // init
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -94,24 +92,26 @@
 
 
 
-
-
-
-
-
 // update
 
 - (void)update:(NSTimeInterval)currentTime forScene:(SKScene *)scene {
+
+    /*
+        maybe use seconds or millis for updating? 
+
+	NSDate *now = [NSDate date];
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond| NSCalendarUnitNanosecond) fromDate:now];
+    CGFloat seconds = (2*M_PI)/60 * (CGFloat)(components.second + 1.0/NSEC_PER_SEC*components.nanosecond) * 10;
+    dot.position = CGPointMake(seconds,0);  
+    */
 
     if (counter % 1 == 0) {
         [self drawFrame];
     }
 
     if (counter >= 5000) {
-
-        // remove the scene or anyway clear it
-        // with rect or whatever
-
+        [self removeAllChildren];
         [self initScene];
         [self initLissajous];
     }
@@ -151,40 +151,9 @@
     g = gcf((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
     mHz = dtheta*frameRate*((float)g)/M_2_PI*pow(10, orderOfMagnitude);
     counter++;
-
 }
-
-/* 
-    kept for date-time reference as may want to adjust timing using absolute time
-*/
-
-- (void)updateHands {
-    
-	NSDate *now = [NSDate date];
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond| NSCalendarUnitNanosecond) fromDate:now];
-
-    /*
-	SKNode *dot = [self childNodeWithName:@"dottie"];
-    CGFloat seconds = (2*M_PI)/60 * (CGFloat)(components.second + 1.0/NSEC_PER_SEC*components.nanosecond) * 10;
-    dot.position = CGPointMake(seconds,0);  
-    */
-}
-
-
-
-
-
-// nodes
 
 - (SKSpriteNode *)dotNode {
-
-    // might be best to make array of dots at start and when exhausted, redraw
-    // better to use scaleToSize function?                                         
-    // as relative to parent or better yet, SKNode - setScale
-
-    /* remove */
-    // shapeLayers = [[NSMutableArray alloc] init];
 
     SKSpriteNode *dotNode = [SKSpriteNode spriteNodeWithImageNamed:@"dot-100.png"];
     dotNode.size = dotRect.size;
@@ -192,16 +161,6 @@
 
     return dotNode;
 }
-
-- (SKLabelNode *)textNode {
-    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed: @"Chalkduster"];
-    textNode.text = @"hello, world";
-    textNode.fontSize = 18;
-    textNode.position = CGPointMake(500,10);
-    return textNode;
-}
-
-
 
 
 
@@ -237,6 +196,7 @@ float roundToN(float num, int p) {
 
     return n;
 }
+
 
 
 @end
