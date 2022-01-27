@@ -9,6 +9,7 @@
   get device list
 
     > xcrun simctl list
+    > xcrun simctl list devices available
 
   get bundleid (run after set $BUNDLEPATH)
 
@@ -25,9 +26,14 @@
   watch
 
     > SCHEME=watch
-    > DEVICEID=50F1FD32-4A12-4F3D-8EA5-F88D836D3EFB
-    > DESTINATION='platform=watchOS Simulator,name=Apple Watch Series 5 - 40mm,OS=8.0'
-    > BUNDLEPATH=/Users/reinfurt/Library/Developer/Xcode/DerivedData/jules-gwsnmzsxnrhqilgeriwvrtqmxhtd/Build/Products/Debug-watchsimulator/watch.app
+    > DEVICEID=4F1508F6-4AB3-4FF1-8B03-5B07866C71C5
+    > DESTINATION='platform=watchOS Simulator,name=Apple Watch Series 5 - 40mm,OS=8.3'
+
+    > DESTINATION='platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro'
+
+    > DESTINATION='platform=iOS Simulator,OS=15.2,name=iPhone 12'
+
+    > BUNDLEPATH=/Users/reinfurt/Library/Developer/Xcode/DerivedData/jules-gwsnmzsxnrhqilgeriwvrtqmxhtd/Build/Products/Debug-watchsimulator/Jules.app
     > BUNDLEID=com.o-r-g.jules.watchkitapp
 
 + start simulator 

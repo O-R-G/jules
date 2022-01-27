@@ -11,17 +11,24 @@
             <objects>
                 <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <spriteKitScene alignment="left" verticalAlignment="center" preferredFramesPerSecond="60" scene="FaceScene.sks" id="d2n-Ir-iWM">
-                            <gestureRecognizers>
-                                <tapGestureRecognizer id="WDU-3u-nTi">
-                                    <connections>
-                                        <action selector="singleTapAction:" destination="AgC-eL-Hgc" id="Pc4-gV-nAr"/>
-                                    </connections>
-                                </tapGestureRecognizer>
-                            </gestureRecognizers>
-                        </spriteKitScene>
+                        <group height="1" alignment="left" layout="overlap" id="wyw-Ze-bks">
+                            <items>
+                                <spriteKitScene alignment="left" verticalAlignment="center" preferredFramesPerSecond="60" scene="FaceScene.sks" id="d2n-Ir-iWM">
+                                    <gestureRecognizers>
+                                        <tapGestureRecognizer id="WDU-3u-nTi">
+                                            <connections>
+                                                <action selector="singleTapAction:" destination="AgC-eL-Hgc" id="Pc4-gV-nAr"/>
+                                            </connections>
+                                        </tapGestureRecognizer>
+                                    </gestureRecognizers>
+                                </spriteKitScene>
+                                <slider alignment="center" verticalAlignment="center" hidden="YES" continuous="YES" value="1" maximum="50" steps="3" minimumImage="minus" catalog="system" maximumImage="plus" id="lsf-30-r1m"/>
+                            </items>
+                        </group>
                     </items>
                     <connections>
+                        <outlet property="group" destination="wyw-Ze-bks" id="4yC-Og-Q2i"/>
+                        <outlet property="hzSlider" destination="lsf-30-r1m" id="6IK-j3-6y2"/>
                         <outlet property="mainScene" destination="d2n-Ir-iWM" id="Umg-cA-uKf"/>
                         <outlet property="singleTapRecognizer" destination="WDU-3u-nTi" id="swL-ax-5EA"/>
                     </connections>
@@ -61,4 +68,8 @@
             <point key="canvasLocation" x="468" y="345"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="minus" catalog="system" width="128" height="26"/>
+        <image name="plus" catalog="system" width="128" height="112"/>
+    </resources>
 </document>
