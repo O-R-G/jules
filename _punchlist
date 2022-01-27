@@ -9,3 +9,5 @@ x borrow logic from AfterHisBeautifulMachineof1855
 + add all drawing logic from jules/ViewController to watch WatchKit Extension/FaceScene.m
 + clean up scene naming logic and protocol in InterfaceController
 x rename FaceScene
+- make @property for speed (dtheta) accessible in FaceScene class 
+  adjust its value with the crown
