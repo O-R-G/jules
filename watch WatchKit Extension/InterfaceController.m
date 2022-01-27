@@ -43,14 +43,14 @@
     
     FaceScene *mainScene = [FaceScene nodeWithFileNamed:@"FaceScene"];
 
+    // dont actually need these as above already calls
+    /*
     [mainScene removeAllChildren];
+    [mainScene initScene];
+    [mainScene initLissajous];
+    */
     
-    // this is brute force
     [self.mainScene presentScene: mainScene];
-    
-    // ** would be better to make these methods public **
-    // [mainScene initScene];
-    // [mainScene initLissajous];
 }
 
 @end

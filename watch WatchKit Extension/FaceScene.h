@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) CGRect dotRect;
 @property (readonly) CGRect julesArea;
 
+- (void)initLissajous;
+
+- (void)initScene;
+
 @end
 
 NS_ASSUME_NONNULL_END
