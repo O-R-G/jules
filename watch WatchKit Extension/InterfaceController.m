@@ -12,6 +12,8 @@
 
 @implementation InterfaceController
 
+@synthesize singleTapRecognizer;
+
 - (void)awakeWithContext:(id)context {
     // Configure interface objects here.
 
@@ -32,6 +34,23 @@
 
 - (void)didDeactivate {
     // This method is called when watch view controller is no longer visible
+}
+
+- (IBAction)singleTapAction:(id)sender {
+    NSLog(@"****** TAP ******");
+
+    // better way to get mainScene? instance variable? or ...
+    
+    FaceScene *mainScene = [FaceScene nodeWithFileNamed:@"FaceScene"];
+
+    [mainScene removeAllChildren];
+    
+    // this is brute force
+    [self.mainScene presentScene: mainScene];
+    
+    // ** would be better to make these methods public **
+    // [mainScene initScene];
+    // [mainScene initLissajous];
 }
 
 @end

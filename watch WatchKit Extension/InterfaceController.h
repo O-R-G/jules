@@ -13,5 +13,7 @@
 @interface InterfaceController : WKInterfaceController 
 
 @property (strong, nonatomic) IBOutlet WKInterfaceSKScene *mainScene;
+@property (strong, nonatomic) IBOutlet WKTapGestureRecognizer *singleTapRecognizer;
+- (IBAction)singleTapAction:(id)sender;
 
 @end

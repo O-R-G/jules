@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="19455" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="19529" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch38"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="19514"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -11,10 +11,19 @@
             <objects>
                 <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
-                        <spriteKitScene alignment="left" verticalAlignment="center" preferredFramesPerSecond="60" scene="FaceScene.sks" id="d2n-Ir-iWM"/>
+                        <spriteKitScene alignment="left" verticalAlignment="center" preferredFramesPerSecond="60" scene="FaceScene.sks" id="d2n-Ir-iWM">
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="WDU-3u-nTi">
+                                    <connections>
+                                        <action selector="singleTapAction:" destination="AgC-eL-Hgc" id="Pc4-gV-nAr"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
+                        </spriteKitScene>
                     </items>
                     <connections>
                         <outlet property="mainScene" destination="d2n-Ir-iWM" id="Umg-cA-uKf"/>
+                        <outlet property="singleTapRecognizer" destination="WDU-3u-nTi" id="swL-ax-5EA"/>
                     </connections>
                 </controller>
             </objects>

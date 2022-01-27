@@ -24,7 +24,7 @@
 		931D10CC27594A320098FFB1 /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D10CB27594A320098FFB1 /* NotificationController.m */; };
 		931D10CF27594A320098FFB1 /* ComplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931D10CE27594A320098FFB1 /* ComplicationController.m */; };
 		931D10D127594A340098FFB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 931D10D027594A340098FFB1 /* Assets.xcassets */; };
-		931D10D627594A340098FFB1 /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 931D10B427594A2F0098FFB1 /* watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		931D10D627594A340098FFB1 /* Jules.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 931D10B427594A2F0098FFB1 /* Jules.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9358683E275ACFDB00ECAACB /* FaceScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9358683D275ACFDB00ECAACB /* FaceScene.m */; };
 		93586840275AD0BB00ECAACB /* FaceScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9358683F275AD0BB00ECAACB /* FaceScene.sks */; };
 /* End PBXBuildFile section */
@@ -60,7 +60,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				931D10D627594A340098FFB1 /* watch.app in Embed Watch Content */,
+				931D10D627594A340098FFB1 /* Jules.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +97,7 @@
 		2A7464DB1B7132A40093B3EA /* JulesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JulesView.m; path = ../jules.xcodeproj/JulesView.m; sourceTree = "<group>"; };
 		2A86782A1B72599200733B0A /* DotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotView.m; sourceTree = "<group>"; };
 		2A86782C1B7259AD00733B0A /* DotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotView.h; sourceTree = "<group>"; };
-		931D10B427594A2F0098FFB1 /* watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		931D10B427594A2F0098FFB1 /* Jules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		931D10B727594A2F0098FFB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		931D10B927594A310098FFB1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		931D10BF27594A320098FFB1 /* watch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +158,7 @@
 			children = (
 				2A7464AA1B70F8920093B3EA /* jules.app */,
 				2A7464C31B70F8920093B3EA /* julesTests.xctest */,
-				931D10B427594A2F0098FFB1 /* watch.app */,
+				931D10B427594A2F0098FFB1 /* Jules.app */,
 				931D10BF27594A320098FFB1 /* watch WatchKit Extension.appex */,
 			);
 			name = Products;
@@ -294,7 +294,7 @@
 			);
 			name = watch;
 			productName = watch;
-			productReference = 931D10B427594A2F0098FFB1 /* watch.app */;
+			productReference = 931D10B427594A2F0098FFB1 /* Jules.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		931D10BE27594A320098FFB1 /* watch WatchKit Extension */ = {
@@ -683,14 +683,13 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = watch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = watch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.o-r-g.jules";
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.o-r-g.jules.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Jules;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -718,13 +717,12 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = watch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = watch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "com.o-r-g.jules";
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.o-r-g.jules.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Jules;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
