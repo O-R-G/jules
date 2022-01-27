@@ -151,6 +151,8 @@
     g = gcf((int)(hzGranularity*xFactor), (int)(hzGranularity*yFactor));
     mHz = dtheta*frameRate*((float)g)/M_2_PI*pow(10, orderOfMagnitude);
     counter++;
+
+    NSLog(@"%1.5f", dtheta);
 }
 
 - (SKSpriteNode *)dotNode {
@@ -197,6 +199,11 @@ float roundToN(float num, int p) {
     return n;
 }
 
-
+/*
+float mapToRange(float in, float inMin, float inMax, float outMin, float outMax) {
+    float out = outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
+    return out;
+}
+*/
 
 @end

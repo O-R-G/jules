@@ -10,6 +10,6 @@ x borrow logic from AfterHisBeautifulMachineof1855
 + clean up scene naming logic and protocol in InterfaceController
 x rename FaceScene
 + add slider and wkcrown delegate
-- make @property for speed (dtheta) accessible in FaceScene class 
++ make @property for speed (dtheta) accessible in FaceScene class 
   adjust its value with the crown
 - adjust _notes and sort out xcodebuild -destination nonsense

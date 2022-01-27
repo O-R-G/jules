@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) float xFactor;
 @property (readonly) float yFactor;
 @property (readonly) float theta;
-@property (readonly) float dtheta;
+@property (readwrite) float dtheta;
 @property (readonly) float mHz;
 @property (readonly) float hzGranularity;
 @property (readonly) float frameRate;
