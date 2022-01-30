@@ -27,13 +27,27 @@
 
     ** not working as of 26 JAN 2022 -- problem is knowing how to list DESTINATION **
 
+    some links suggest always s
+
+        accdg to man xcodebuild:
+
+        A watchOS Simulator app is always built and deployed nested inside of an iOS Simulator app. To use a watchOS Simulator device as your
+        destination, specify a scheme which is configured to run a WatchKit app, and specify the iOS Simulator platform destination that is paired
+        with the watchOS Simulator device you want to use.
+
     > SCHEME=watch
-    > DEVICEID=4F1508F6-4AB3-4FF1-8B03-5B07866C71C5
+
+    not working:
+
+    > DEVICEID=4F34C33A-590B-4510-AB53-E42A2020F020
     > DESTINATION='platform=watchOS Simulator,name=Apple Watch Series 5 - 40mm,OS=8.3'
 
-    > DESTINATION='platform=iOS Simulator,OS=15.2,name=iPhone 12 Pro'
+    also not working:
 
-    > DESTINATION='platform=iOS Simulator,OS=15.2,name=iPhone 12'
+    > DEVICEID=790155AE-DBF3-46BE-8300-16A22B0B87C1
+    > DESTINATION='platform=iOS Simulator,name=iPhone 12,OS=15.2'
+
+    these are ok:
 
     > BUNDLEPATH=/Users/reinfurt/Library/Developer/Xcode/DerivedData/jules-gwsnmzsxnrhqilgeriwvrtqmxhtd/Build/Products/Debug-watchsimulator/Jules.app
     > BUNDLEID=com.o-r-g.jules.watchkitapp
