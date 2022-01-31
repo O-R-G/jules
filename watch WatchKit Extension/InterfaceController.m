@@ -34,6 +34,9 @@
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user
+
+    _hz_delta = 25;
+    [hzSlider setValue:_hz_delta];
     [self.crownSequencer focus];
 }
 
@@ -65,7 +68,7 @@
         update FaceScene dtheta (used to calculate mHz)
         dtheta is the time delta between drawing dots in range:
 
-            0.001f < dtheta < 0.2f      (default = .03333)
+            0.001f < dtheta < 0.066f      (default = 0.033f)
         
         _hz_delta is used to update slider in range:
 
@@ -75,9 +78,7 @@
     if (rotationalDelta > 0 && _hz_delta < 50) _hz_delta++;
     if (rotationalDelta < 0 && _hz_delta > 1) _hz_delta--;
         
-    // map _hz_delta onto dtheta range based on
-    // float out = outMin + (outMax - outMin) * (in - inMin) / (inMax - inMin);
-    float dtheta = 0.001f + (0.2f - 0.001f) * (_hz_delta - 0) / (50 - 0);       // local
+    float dtheta = 0.001f + (0.066f - 0.001f) * (_hz_delta - 0) / (50 - 0);       
 
     [hzSlider setHidden:0];
     [hzSlider setValue:_hz_delta];
@@ -86,8 +87,9 @@
     [mainScene setDtheta: dtheta];
     [self.mainScene presentScene: mainScene];
 
-    NSLog(@"****** ROTATE ******");
-    NSLog(@"%1.5f", dtheta);
+    // NSLog(@"****** ROTATE ******");
+    NSLog(@"%1.5f ROTATE: DTHETA", dtheta);
+    NSLog(@"%1.5f ROTATE: ROTATIONAL DELTA", rotationalDelta);
 }
 
 - (void) crownDidBecomeIdle:(WKCrownSequencer *)crownSequencer {
