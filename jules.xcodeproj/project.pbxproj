@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		264035102DC47E7800B1FAF3 /* jingle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2640350F2DC47E7800B1FAF3 /* jingle.mp3 */; };
+		2640351E2DC4B15C00B1FAF3 /* jingle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2640351D2DC4B15C00B1FAF3 /* jingle.mp3 */; };
+		264035212DC4B21E00B1FAF3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264035202DC4B21E00B1FAF3 /* AVFoundation.framework */; };
 		2A7464B01B70F8920093B3EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464AF1B70F8920093B3EA /* main.m */; };
 		2A7464B31B70F8920093B3EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464B21B70F8920093B3EA /* AppDelegate.m */; };
 		2A7464B61B70F8920093B3EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464B51B70F8920093B3EA /* ViewController.m */; };
@@ -80,6 +83,9 @@
 
 /* Begin PBXFileReference section */
 		07FEB734212B582C00DA60BA /* jules.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jules.entitlements; sourceTree = "<group>"; };
+		2640350F2DC47E7800B1FAF3 /* jingle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jingle.mp3; sourceTree = "<group>"; };
+		2640351D2DC4B15C00B1FAF3 /* jingle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jingle.mp3; sourceTree = "<group>"; };
+		264035202DC4B21E00B1FAF3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2A7464AA1B70F8920093B3EA /* jules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7464AE1B70F8920093B3EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7464AF1B70F8920093B3EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264035212DC4B21E00B1FAF3 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +149,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2640351F2DC4B21E00B1FAF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				264035202DC4B21E00B1FAF3 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2A7464A11B70F8920093B3EA = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +164,7 @@
 				2A7464C61B70F8920093B3EA /* julesTests */,
 				931D10B527594A2F0098FFB1 /* watch */,
 				931D10C327594A320098FFB1 /* watch WatchKit Extension */,
+				2640351F2DC4B21E00B1FAF3 /* Frameworks */,
 				2A7464AB1B70F8920093B3EA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -171,6 +187,7 @@
 				2A86782C1B7259AD00733B0A /* DotView.h */,
 				2A86782A1B72599200733B0A /* DotView.m */,
 				2A7464D31B710D9E0093B3EA /* JulesView.h */,
+				2640351D2DC4B15C00B1FAF3 /* jingle.mp3 */,
 				2A7464DB1B7132A40093B3EA /* JulesView.m */,
 				2A7464B11B70F8920093B3EA /* AppDelegate.h */,
 				2A7464B21B70F8920093B3EA /* AppDelegate.m */,
@@ -225,6 +242,7 @@
 				9358683C275ACFDB00ECAACB /* FaceScene.h */,
 				9358683D275ACFDB00ECAACB /* FaceScene.m */,
 				931D10C427594A320098FFB1 /* InterfaceController.h */,
+				2640350F2DC47E7800B1FAF3 /* jingle.mp3 */,
 				931D10C527594A320098FFB1 /* InterfaceController.m */,
 				931D10C727594A320098FFB1 /* ExtensionDelegate.h */,
 				931D10C827594A320098FFB1 /* ExtensionDelegate.m */,
@@ -375,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A7464B91B70F8920093B3EA /* Main.storyboard in Resources */,
+				2640351E2DC4B15C00B1FAF3 /* jingle.mp3 in Resources */,
 				2A7464BE1B70F8920093B3EA /* LaunchScreen.xib in Resources */,
 				2A7464BB1B70F8920093B3EA /* Images.xcassets in Resources */,
 			);
@@ -400,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264035102DC47E7800B1FAF3 /* jingle.mp3 in Resources */,
 				931D10D127594A340098FFB1 /* Assets.xcassets in Resources */,
 				93586840275AD0BB00ECAACB /* FaceScene.sks in Resources */,
 			);
@@ -696,7 +716,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -729,7 +749,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
