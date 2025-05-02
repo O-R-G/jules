@@ -5,7 +5,7 @@
 //  Created by lily healey on 04.08.2015.
 //  Copyright (c) 2015 o-r-g. All rights reserved.
 //
-
+#import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -33,6 +33,8 @@
 @property (readonly) UIBezierPath *path;
 
 @property (strong, nonatomic) IBOutlet UILabel *hzLabel;
+
+@property (nonatomic, strong) AVAudioPlayer *backgroundMusic;
 
 - (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender;
 - (IBAction)doubleTapAction:(UITapGestureRecognizer *)sender;

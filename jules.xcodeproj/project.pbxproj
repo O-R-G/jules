@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26D843CE2DC462220004F697 /* jingle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26D843CD2DC462220004F697 /* jingle.mp3 */; };
+		26D843CF2DC462220004F697 /* jingle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 26D843CD2DC462220004F697 /* jingle.mp3 */; };
+		26D843D22DC462510004F697 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D843D12DC462510004F697 /* AVFoundation.framework */; };
 		2A7464B01B70F8920093B3EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464AF1B70F8920093B3EA /* main.m */; };
 		2A7464B31B70F8920093B3EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464B21B70F8920093B3EA /* AppDelegate.m */; };
 		2A7464B61B70F8920093B3EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A7464B51B70F8920093B3EA /* ViewController.m */; };
@@ -30,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		07FEB734212B582C00DA60BA /* jules.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jules.entitlements; sourceTree = "<group>"; };
+		26D843CD2DC462220004F697 /* jingle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jingle.mp3; sourceTree = "<group>"; };
+		26D843D12DC462510004F697 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2A7464AA1B70F8920093B3EA /* jules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7464AE1B70F8920093B3EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7464AF1B70F8920093B3EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D843D22DC462510004F697 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,11 +73,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26D843D02DC462500004F697 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26D843D12DC462510004F697 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2A7464A11B70F8920093B3EA = {
 			isa = PBXGroup;
 			children = (
 				2A7464AC1B70F8920093B3EA /* jules */,
 				2A7464C61B70F8920093B3EA /* julesTests */,
+				26D843D02DC462500004F697 /* Frameworks */,
 				2A7464AB1B70F8920093B3EA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +111,7 @@
 				2A7464B21B70F8920093B3EA /* AppDelegate.m */,
 				2A7464B11B70F8920093B3EA /* AppDelegate.h */,
 				2A7464B41B70F8920093B3EA /* ViewController.h */,
+				26D843CD2DC462220004F697 /* jingle.mp3 */,
 				2A7464B51B70F8920093B3EA /* ViewController.m */,
 				2A7464B71B70F8920093B3EA /* Main.storyboard */,
 				2A7464BA1B70F8920093B3EA /* Images.xcassets */,
@@ -218,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A7464B91B70F8920093B3EA /* Main.storyboard in Resources */,
+				26D843CF2DC462220004F697 /* jingle.mp3 in Resources */,
 				2A7464BE1B70F8920093B3EA /* LaunchScreen.xib in Resources */,
 				2A7464BB1B70F8920093B3EA /* Images.xcassets in Resources */,
 			);
@@ -227,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D843CE2DC462220004F697 /* jingle.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
