@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) float hzGranularity;
 @property (readonly) float frameRate;
 
-// @property (nonatomic) CGSize size;
 @property (readonly) CGSize size;
 @property (readonly) CGFloat scalar;
 @property (readonly) CGPoint dotPoint;

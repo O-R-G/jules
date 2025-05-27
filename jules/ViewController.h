@@ -9,7 +9,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVFoundation.h>
 
 @interface ViewController : UIViewController
 
@@ -34,8 +33,6 @@
 @property (readonly) UIBezierPath *path;
 
 @property (strong, nonatomic) IBOutlet UILabel *hzLabel;
-
-@property (nonatomic, strong) AVAudioPlayer *backgroundMusic;
 
 - (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender;
 - (IBAction)doubleTapAction:(UITapGestureRecognizer *)sender;

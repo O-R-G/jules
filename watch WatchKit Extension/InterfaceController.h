@@ -9,7 +9,6 @@
 #import <SceneKit/SceneKit.h>
 #import <WatchKit/WatchKit.h>
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
 
 @interface InterfaceController : WKInterfaceController <WKCrownDelegate> {
     BOOL paused;
@@ -20,8 +19,7 @@
 @property (strong, nonatomic) IBOutlet WKTapGestureRecognizer *singleTapRecognizer;
 @property (strong, nonatomic) IBOutlet WKInterfaceSlider *hzSlider;
 @property (nonatomic) int hz_delta;
-// Add audio player property
-@property (nonatomic, strong) AVAudioPlayer *backgroundMusic;
+
 
 - (IBAction)singleTapAction:(id)sender;
 
