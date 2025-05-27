@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @class AppDelegate;
 
@@ -104,6 +105,11 @@
 
 - (void) enterForeground
 {
+    UINotificationFeedbackGenerator *generator = [[UINotificationFeedbackGenerator alloc] init];
+    [generator prepare];
+    [generator notificationOccurred:UINotificationFeedbackTypeSuccess];
+    AudioServicesPlaySystemSound(1254); // example: SMSReceived1.caf sound
+
     [self startAnimation];
     [self initTimer];
 }
