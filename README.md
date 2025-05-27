@@ -3,6 +3,7 @@
 use _build-{SCHEME} to init xcodebuild command line environment
 
     ./_build-jules
-    ./_build-watch
+or
 
+    ./_build-watch
 
