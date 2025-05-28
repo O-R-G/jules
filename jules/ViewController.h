@@ -35,6 +35,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *hzLabel;
 
 @property (nonatomic, strong) AVAudioPlayer *backgroundMusic;
+@property (nonatomic, assign) SystemSoundID customSoundID;
 
 - (IBAction)longPressAction:(UILongPressGestureRecognizer *)sender;
 - (IBAction)doubleTapAction:(UITapGestureRecognizer *)sender;

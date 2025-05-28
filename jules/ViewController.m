@@ -99,7 +99,10 @@
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
     
-    [self setupBackgroundMusic];
+    // load custom sound
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"ping" ofType:@"caf"];
+    NSURL *soundURL = [NSURL fileURLWithPath:soundPath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_customSoundID);
     
     [self startAnimation];
     [self initTimer];
@@ -117,11 +120,6 @@
 
 - (void) enterForeground
 {
-    UINotificationFeedbackGenerator *generator = [[UINotificationFeedbackGenerator alloc] init];
-    [generator prepare];
-    [generator notificationOccurred:UINotificationFeedbackTypeSuccess];
-    AudioServicesPlaySystemSound(1254); // example: SMSReceived1.caf sound
-
     [self startAnimation];
     [self initTimer];
 }
@@ -366,46 +364,11 @@ float roundToN(float num, int p)
     [self takeScreenshot];
 }
 
-// Add this new method to setup background music
-- (void)setupBackgroundMusic {
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSURL *audioURL = [bundle URLForResource:@"jingle" withExtension:@"mp3"];
-    if (audioURL) {
-        NSError *error = nil;
-        
-        // Initialize audio session for background playback
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
-        if (error) {
-            NSLog(@"Error setting audio session category: %@", error.localizedDescription);
-        }
-        
-        // Create audio player
-        self.backgroundMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:audioURL error:&error];
-        if (error) {
-            NSLog(@"Error creating audio player: %@", error.localizedDescription);
-            return;
-        }
-        
-        self.backgroundMusic.delegate = (id)self;
-        self.backgroundMusic.numberOfLoops = -1; // Infinite looping
-        [self.backgroundMusic prepareToPlay];
-        [self.backgroundMusic play];
-    } else {
-        NSLog(@"Background music file not found");
-    }
-}
-
 - (void)handleDidBecomeActive {
-    if (self.backgroundMusic && !self.backgroundMusic.isPlaying) {
-        [self.backgroundMusic play];
-    }
+    AudioServicesPlaySystemSound(self.customSoundID);
 }
 
 - (void)handleWillResignActive {
-    if (self.backgroundMusic && self.backgroundMusic.isPlaying) {
-        [self.backgroundMusic pause];
-    }
 }
-
 
 @end
